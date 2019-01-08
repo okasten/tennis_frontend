@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Calendar from "./hoc/Calendar/index";
+import Month from "./containers/Month";
+import { withRouter, Route, Switch, HashRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Calendar>
+        <HashRouter>
+          <Switch>
+            <Route path="/:year/:month" component={Month} />
+            <Route path="/" exact component={Month} />
+          </Switch>
+        </HashRouter>
+      </Calendar>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

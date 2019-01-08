@@ -1,0 +1,30 @@
+.month-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .row {
+    flex: 3;
+
+    &:nth-child(2) {
+      text-align: center;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    .fas {
+      font-size: 55px;
+      color: rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
