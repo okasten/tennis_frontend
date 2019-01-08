@@ -1,0 +1,46 @@
+$day-width: 14.28%; // 100 / 7 = 14.28
+
+.day {
+  position: relative;
+  flex: 1 0 $day-width;
+  max-width: calc(100% / 7);
+  min-height: 130px;
+  padding: 10px;
+  box-shadow: inset 0 1px 1px #000;
+
+  &:hover {
+    .btn-new-reminder {
+      opacity: 1;
+    }
+  }
+
+  @for $i from 1 to 8 {
+    &.first-index-#{$i} {
+      margin-left: $day-width * $i;
+    }
+  }
+
+  header {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .btn-new-reminder {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    opacity: 0;
+    transition: opacity 500ms;
+    z-index: 1;
+
+    .fas {
+      font-size: 38px;
+      color: rgba(0, 0, 0, 0.4);
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
