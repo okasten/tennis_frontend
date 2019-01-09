@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, FormGroup, Col, Radio, Button } from "react-bootstrap";
-import { logIn } from "../store/actions/users";
+import { Link } from "react-router-dom";
+import { logInUser } from "../store/actions";
 
 class LogInForm extends Component {
   state = {
@@ -20,8 +21,10 @@ class LogInForm extends Component {
   };
 
   handleSignUp = () => {
-    console.log("SIGN UP", this.state);
+    console.log(this.state);
+    this.props.logInUser(this.state);
   };
+
   render() {
     return (
       <Form>
@@ -96,7 +99,7 @@ class LogInForm extends Component {
             name="userType"
             inline
             onChange={this.handleChange}
-            value="coach"
+            value="coaches"
           >
             {" "}
             I am a Coach{" "}
@@ -105,7 +108,7 @@ class LogInForm extends Component {
             name="userType"
             inline
             onChange={this.handleChange}
-            value="student"
+            value="students"
           >
             {" "}
             I am a Student{" "}
@@ -114,9 +117,13 @@ class LogInForm extends Component {
 
         <FormGroup>
           {this.props.context === "signUp" ? (
-            <Button onClick={this.handleSignUp}> Sign Up </Button>
+            <Link to="/signup">
+              <Button onClick={this.handleSignUp}> Sign Up </Button>
+            </Link>
           ) : (
-            <Button> Log In </Button>
+            <Link to="/login">
+              <Button> Log In </Button>
+            </Link>
           )}
         </FormGroup>
       </Form>
@@ -124,4 +131,14 @@ class LogInForm extends Component {
   }
 }
 
-export default LogInForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    logInUser: user => dispatch(logInUser(user))
+  };
+};
+// export default LogInForm;
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LogInForm);

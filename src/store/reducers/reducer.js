@@ -47,6 +47,7 @@ const deleteLesson = (prevState, action) => {
 };
 
 const reducer = (prevState = initialState, action) => {
+  console.log(prevState, action);
   switch (action.type) {
     case "CREATE_LESSON":
       return createLesson(prevState, action);

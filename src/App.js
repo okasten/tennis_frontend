@@ -13,7 +13,6 @@ class App extends Component {
     context: ""
   };
   handleLogIn = context => {
-    console.log("SIGN UP", context);
     this.setState({
       logIn: !this.state.logIn,
       context: context
