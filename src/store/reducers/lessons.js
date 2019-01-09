@@ -3,7 +3,6 @@ import uniqueId from "uuid/v1";
 const initialState = {};
 
 const createLesson = (prevState, action) => {
-  console.log(action);
   const lesson = {
     id: uniqueId(),
     time: action.lesson.time,
@@ -13,15 +12,16 @@ const createLesson = (prevState, action) => {
 
   return {
     ...prevState,
-    [action.lesson.date]: prevState[action.lesson.date]
-      ? prevState[action.lesson.date].concat(lesson)
+    [action.lesson.day]: prevState[action.lesson.day]
+      ? prevState[action.lesson.day].concat(lesson)
       : [lesson]
   };
 };
 
 const updateLesson = (prevState, action) => {
+  console.log("I MADE IT TO UPDATELESSON", prevState, action);
   let lessons = [];
-  lessons = [...prevState[action.lesson.date]].forEach(lesson => {
+  [...prevState[action.lesson.day]].forEach(lesson => {
     if (action.lesson.id === lesson.id) {
       lesson = {
         id: lesson.id,
@@ -32,10 +32,9 @@ const updateLesson = (prevState, action) => {
     }
     lessons.push(lesson);
   });
-
   return {
     ...prevState,
-    [action.lesson.date]: lessons
+    [action.lesson.day]: lessons
   };
 };
 

@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  createLesson,
-  updateLesson,
-  deleteLesson
-} from "../../store/actions.js";
+import * as actions from "../../store/actions";
 import _sortBy from "lodash/sortBy";
 import LessonForm from "./Lessons/LessonForm";
 import Lesson from "./Lessons/Lesson";
@@ -99,7 +95,6 @@ class Day extends Component {
         ) : (
           <React.Fragment>
             <header>{this.props.day}</header>
-            {console.log(lessons)}
             {lessons.length
               ? lessons.map((lesson, i) => {
                   return (
@@ -107,7 +102,7 @@ class Day extends Component {
                       key={i}
                       lesson={lesson}
                       handleSetEdit={this.handleSetEdit}
-                      handleDeleteReminder={this.handleDeleteReminder}
+                      handleDeleteLesson={this.handleDeleteLesson}
                     />
                   );
                 })
@@ -127,9 +122,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createLesson: payload => dispatch(createLesson(payload)),
-    updateLesson: payload => dispatch(updateLesson(payload)),
-    deleteLesson: (date, id) => dispatch(deleteLesson(date, id))
+    createLesson: payload => dispatch(actions.createLesson(payload)),
+    updateLesson: payload => dispatch(actions.updateLesson(payload)),
+    deleteLesson: (date, id) => dispatch(actions.deleteLesson(date, id))
   };
 };
 
