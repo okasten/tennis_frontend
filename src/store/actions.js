@@ -1,21 +1,22 @@
 const createLessonAction = lesson => {
   return {
     type: "CREATE_LESSON",
-    payload: lesson
+    lesson: lesson
   };
 };
 
 const updateLessonAction = lesson => {
   return {
     type: "UPDATE_LESSON",
-    payload: lesson
+    lesson: lesson
   };
 };
 
-const deleteLessonAction = lesson => {
+const deleteLessonAction = (date, id) => {
   return {
     type: "DELETE_LESSON",
-    payload: lesson
+    date: date,
+    id: id
   };
 };
 
@@ -31,8 +32,8 @@ export const updateLesson = lesson => {
   };
 };
 
-export const deleteLesson = lesson => {
+export const deleteLesson = (date, id) => {
   return dispatch => {
-    dispatch(deleteLessonAction(lesson));
+    dispatch(deleteLessonAction(date, id));
   };
 };

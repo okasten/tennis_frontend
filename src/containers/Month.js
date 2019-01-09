@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import HeaderMonth from "../components/HeaderMonth";
 import HeaderWeekDays from "../components/HeaderWeekDays";
-import Day from "../components/Day";
+import Day from "../components/Day/Day";
 import "./Month.scss";
 
 export default class Month extends Component {

@@ -1,0 +1,38 @@
+.lesson {
+  color: #fff;
+  position: relative;
+  font-size: 12px;
+  padding: 3px 5px;
+  margin-bottom: 3px;
+
+  &:hover {
+    .tools {
+      visibility: visible;
+    }
+  }
+
+  strong {
+    display: block;
+  }
+
+  .tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 3px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1;
+
+    button {
+      float: right;
+
+      .fas {
+        color: #fff;
+        font-size: 14px;
+      }
+    }
+  }
+}

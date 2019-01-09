@@ -6,6 +6,8 @@
     "dayz": "^2.2.0",
     "moment": "^2.23.0",
     "node-sass": "^4.11.0",
+    "rc-color-picker": "^1.2.6",
+    "rc-time-picker": "^3.5.0",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
