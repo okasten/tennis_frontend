@@ -1,6 +1,6 @@
 import uniqueId from "uuid/v1";
 
-const initialState = {};
+const initialState = { currentUser: null };
 
 const createLesson = (prevState, action) => {
   const lesson = {
@@ -19,7 +19,6 @@ const createLesson = (prevState, action) => {
 };
 
 const updateLesson = (prevState, action) => {
-  console.log("I MADE IT TO UPDATELESSON", prevState, action);
   let lessons = [];
   [...prevState[action.lesson.day]].forEach(lesson => {
     if (action.lesson.id === lesson.id) {
