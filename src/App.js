@@ -24,8 +24,8 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.length > 0) {
       let token = localStorage.getItem("token");
-
-      fetch("http://localhost:3000/api/v1/profile/", {
+      let type = localStorage.getItem("type");
+      fetch(`http://localhost:3000/api/v1/${type}profile/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -37,17 +37,16 @@ class App extends Component {
         .then(user => {
           console.log("User", user);
           this.setState({
-            // user: user.coach,
             logIn: false
           });
-          this.props.logIn(user.coach);
-          console.log(this.state, this.props);
+          this.props.logIn(user[type]);
         });
     }
   }
 
   handleLogOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("type");
     this.setState({
       // user: null,
       logIn: true

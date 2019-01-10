@@ -18,8 +18,9 @@ export const logIn = user => {
 //sign up a new user
 export const createUser = user => {
   let userName = user.firstName + " " + user.lastName;
+  console.log(user);
   return function thunk(dispatch) {
-    return fetch(`http://localhost:3000/api/v1/coaches`, {
+    return fetch(`http://localhost:3000/api/v1/${user.userType}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,7 +36,9 @@ export const createUser = user => {
     })
       .then(r => r.json())
       .then(res => {
+        console.log(res);
         localStorage.setItem("token", res.jwt);
+        localStorage.setItem("type", res.type);
         dispatch(logIn(res));
       })
       .catch(console.error);
@@ -61,6 +64,7 @@ export const logInUser = user => {
       .then(r => r.json())
       .then(res => {
         localStorage.setItem("token", res.jwt);
+        localStorage.setItem("type", res.type);
         dispatch(logIn(res));
       });
   };

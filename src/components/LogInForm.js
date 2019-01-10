@@ -113,7 +113,7 @@ class LogInForm extends Component {
             name="userType"
             inline
             onChange={this.handleChange}
-            value="students"
+            value="players"
           >
             {" "}
             I am a Student{" "}
