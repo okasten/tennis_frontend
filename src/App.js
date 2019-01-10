@@ -25,7 +25,7 @@ class App extends Component {
         <Header handleLogIn={this.handleLogIn} />
         {this.state.logIn ? (
           <LogInForm
-            changeHeader={this.handleLogIn}
+            handleLogIn={this.handleLogIn}
             pullUpForm={this.state.context}
           />
         ) : null}

@@ -11,7 +11,7 @@ class Header extends Component {
             <a href="/">AdvScheduler</a>
           </Navbar.Brand>
         </Navbar.Header>
-        {this.props.currentUser ? (
+        {this.props.user ? (
           <Nav pullRight>
             <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
               <MenuItem eventKey={3.1}>Action</MenuItem>

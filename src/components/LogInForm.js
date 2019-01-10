@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, FormGroup, Col, Radio, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import { logInUser } from "../store/actions";
+import { createUser } from "../store/actions";
 
 class LogInForm extends Component {
   state = {
@@ -21,9 +21,8 @@ class LogInForm extends Component {
   };
 
   handleSignUp = () => {
-    console.log(this.state);
-    this.props.logInUser(this.state);
-    this.props.changeHeader();
+    this.props.createUser(this.state);
+    this.props.handleLogIn();
   };
 
   render() {
@@ -134,8 +133,8 @@ class LogInForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logInUser: user => {
-      return dispatch({ type: "LOG_IN", payload: user });
+    createUser: user => {
+      dispatch(createUser(user));
     }
   };
 };
