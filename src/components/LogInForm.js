@@ -99,34 +99,36 @@ class LogInForm extends Component {
             />
           </Col>
         </FormGroup>
-        <FormGroup>
-          <Radio
-            name="userType"
-            inline
-            onChange={this.handleChange}
-            value="coaches"
-          >
-            {" "}
-            I am a Coach{" "}
-          </Radio>
-          <Radio
-            name="userType"
-            inline
-            onChange={this.handleChange}
-            value="players"
-          >
-            {" "}
-            I am a Student{" "}
-          </Radio>
-        </FormGroup>
 
         <FormGroup>
           {this.props.pullUpForm === "signUp" ? (
-            <Link to="/signup">
-              <Button onClick={this.handleSignUp}> Sign Up </Button>
-            </Link>
+            <React.Fragment>
+              <FormGroup>
+                <Radio
+                  name="userType"
+                  inline
+                  onChange={this.handleChange}
+                  value="coaches"
+                >
+                  {" "}
+                  I am a Coach{" "}
+                </Radio>
+                <Radio
+                  name="userType"
+                  inline
+                  onChange={this.handleChange}
+                  value="players"
+                >
+                  {" "}
+                  I am a Student{" "}
+                </Radio>
+              </FormGroup>
+              <Link to="/">
+                <Button onClick={this.handleSignUp}> Sign Up </Button>
+              </Link>
+            </React.Fragment>
           ) : (
-            <Link to="/login">
+            <Link to="/">
               <Button onClick={this.handleLogIn}> Log In </Button>
             </Link>
           )}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, MenuItem, Nav, NavItem, NavDropdown } from "react-bootstrap";
-import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
@@ -31,12 +31,11 @@ class Header extends Component {
         ) : (
           <Nav pullRight>
             <NavItem onClick={() => this.props.handleLogIn("signUp")}>
-              {" "}
-              Sign Up{" "}
+              <Link to="/signup"> Sign Up </Link>
             </NavItem>
+
             <NavItem onClick={() => this.props.handleLogIn("logIn")}>
-              {" "}
-              Log In{" "}
+              <Link to="/login"> Log In </Link>
             </NavItem>
           </Nav>
         )}
@@ -45,10 +44,4 @@ class Header extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: state.currentUser
-//   };
-// };
 export default Header;
-// export default connect(mapStateToProps)(Header);

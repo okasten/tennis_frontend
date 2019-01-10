@@ -74,7 +74,7 @@ export default class Month extends Component {
       props["day"] = i;
 
       if (i === 1) {
-        props["firstDayIndex"] = moment(this.state.currentMonth)
+        props["firstDayIndex"] = moment(this.state.currentMonth.date)
           .startOf("month")
           .format("d");
       } else {

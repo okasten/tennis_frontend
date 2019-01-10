@@ -35,7 +35,6 @@ class App extends Component {
       })
         .then(response => response.json())
         .then(user => {
-          console.log("User", user);
           this.setState({
             logIn: false
           });
@@ -48,7 +47,6 @@ class App extends Component {
     localStorage.removeItem("token");
     localStorage.removeItem("type");
     this.setState({
-      // user: null,
       logIn: true
     });
 
