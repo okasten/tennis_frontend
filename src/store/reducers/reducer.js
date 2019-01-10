@@ -3,6 +3,11 @@ import uniqueId from "uuid/v1";
 const initialState = { currentUser: null };
 
 const logInUser = (prevState, action) => {
+  console.log(action.payload);
+  return { ...prevState, currentUser: action.payload };
+};
+
+const logOutUser = (prevState, action) => {
   return { ...prevState, currentUser: action.payload };
 };
 
@@ -54,6 +59,8 @@ const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
       return logInUser(prevState, action);
+    case "LOG_OUT":
+      return logOutUser(prevState, action);
     case "CREATE_LESSON":
       return createLesson(prevState, action);
     case "UPDATE_LESSON":

@@ -6,23 +6,64 @@ import { withRouter, Route, Switch, HashRouter } from "react-router-dom";
 import Header from "./components/Header";
 import { connect } from "react-redux";
 import LogInForm from "./components/LogInForm";
+import { logOutUser, logIn } from "./store/actions";
 
 class App extends Component {
   state = {
     logIn: false,
     context: ""
   };
-  handleLogIn = context => {
+  handleLogIn = (context, user = null) => {
     this.setState({
       logIn: !this.state.logIn,
       context: context
+      // user: user
     });
+  };
+
+  componentDidMount() {
+    if (localStorage.length > 0) {
+      let token = localStorage.getItem("token");
+
+      fetch("http://localhost:3000/api/v1/profile/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Action: "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(response => response.json())
+        .then(user => {
+          console.log("User", user);
+          this.setState({
+            // user: user.coach,
+            logIn: false
+          });
+          this.props.logIn(user.coach);
+          console.log(this.state, this.props);
+        });
+    }
+  }
+
+  handleLogOut = () => {
+    localStorage.removeItem("token");
+    this.setState({
+      // user: null,
+      logIn: true
+    });
+
+    this.props.handleLogOut();
   };
 
   render() {
     return (
       <React.Fragment>
-        <Header handleLogIn={this.handleLogIn} />
+        <Header
+          handleLogIn={this.handleLogIn}
+          user={this.props.user}
+          handleLogOut={this.handleLogOut}
+        />
         {this.state.logIn ? (
           <LogInForm
             handleLogIn={this.handleLogIn}
@@ -50,4 +91,14 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(App));
+const mapDispatchToProps = dispatch => {
+  return {
+    logIn: user => dispatch(logIn(user)),
+    handleLogOut: () => dispatch(logOutUser())
+  };
+};
+// export default withRouter(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(App));

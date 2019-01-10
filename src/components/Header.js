@@ -26,7 +26,7 @@ class Header extends Component {
             <NavItem eventKey={2} href="#">
               Profile
             </NavItem>
-            <NavItem>Log Out</NavItem>
+            <NavItem onClick={this.props.handleLogOut}>Log Out</NavItem>
           </Nav>
         ) : (
           <Nav pullRight>
@@ -45,10 +45,10 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.currentUser
-  };
-};
-
-export default connect(mapStateToProps)(Header);
+// const mapStateToProps = state => {
+//   return {
+//     user: state.currentUser
+//   };
+// };
+export default Header;
+// export default connect(mapStateToProps)(Header);
