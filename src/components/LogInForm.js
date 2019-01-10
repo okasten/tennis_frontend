@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, FormGroup, Col, Radio, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { logInUser } from "../store/actions";
+// import { logInUser } from "../store/actions";
 
 class LogInForm extends Component {
   state = {
@@ -23,12 +23,13 @@ class LogInForm extends Component {
   handleSignUp = () => {
     console.log(this.state);
     this.props.logInUser(this.state);
+    this.props.changeHeader();
   };
 
   render() {
     return (
       <Form>
-        {this.props.context === "signUp" ? (
+        {this.props.pullUpForm === "signUp" ? (
           <React.Fragment>
             <FormGroup>
               <Col sm={2}>First Name</Col>
@@ -116,7 +117,7 @@ class LogInForm extends Component {
         </FormGroup>
 
         <FormGroup>
-          {this.props.context === "signUp" ? (
+          {this.props.pullUpForm === "signUp" ? (
             <Link to="/signup">
               <Button onClick={this.handleSignUp}> Sign Up </Button>
             </Link>
@@ -133,7 +134,9 @@ class LogInForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logInUser: user => dispatch(logInUser(user))
+    logInUser: user => {
+      return dispatch({ type: "LOG_IN", payload: user });
+    }
   };
 };
 // export default LogInForm;

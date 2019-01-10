@@ -18,11 +18,17 @@ class App extends Component {
       context: context
     });
   };
+
   render() {
     return (
       <React.Fragment>
         <Header handleLogIn={this.handleLogIn} />
-        {this.state.logIn ? <LogInForm context={this.state.context} /> : null}
+        {this.state.logIn ? (
+          <LogInForm
+            changeHeader={this.handleLogIn}
+            pullUpForm={this.state.context}
+          />
+        ) : null}
         {this.props.user ? (
           <Calendar>
             <HashRouter>
