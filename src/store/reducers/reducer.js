@@ -1,6 +1,6 @@
 import uniqueId from "uuid/v1";
 
-const initialState = { currentUser: null };
+const initialState = { currentUser: null, lessons: [] };
 
 const logInUser = (prevState, action) => {
   console.log(action.payload);

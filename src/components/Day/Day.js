@@ -14,7 +14,9 @@ class Day extends Component {
       id: null,
       time: null,
       description: null,
-      color: defaultColor
+      color: defaultColor,
+      player: null,
+      location: null
     }
   };
 
@@ -46,9 +48,12 @@ class Day extends Component {
 
     if (description.length) {
       const payload = {
-        day: this.props.date,
+        date: this.props.date,
         time: form.querySelector(".rc-time-picker-input").value,
-        description: description,
+        notes: description,
+        location: this.state.editLesson.location,
+        coach: this.props.user,
+        player: null,
         color: this.state.editLesson.color || defaultColor
       };
 
@@ -116,7 +121,8 @@ class Day extends Component {
 
 const mapStateToProps = state => {
   return {
-    lessons: state
+    lessons: state.lessons,
+    user: state.currentUser
   };
 };
 
