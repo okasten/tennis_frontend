@@ -30,13 +30,15 @@ const createLesson = (prevState, action) => {
 };
 
 const updateLesson = (prevState, action) => {
+  console.log(action);
   let lessons = [];
-  [...prevState[action.lesson.day]].forEach(lesson => {
+
+  [...prevState[action.lesson.date]].forEach(lesson => {
     if (action.lesson.id === lesson.id) {
       lesson = {
         id: lesson.id,
         time: action.lesson.time,
-        description: action.lesson.description,
+        description: action.lesson.notes,
         color: action.lesson.color
       };
     }
@@ -44,7 +46,7 @@ const updateLesson = (prevState, action) => {
   });
   return {
     ...prevState,
-    [action.lesson.day]: lessons
+    [action.lesson.date]: lessons
   };
 };
 

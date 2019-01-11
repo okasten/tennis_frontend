@@ -13,13 +13,6 @@ const updateLessonAction = lesson => {
   };
 };
 
-const getLessonsAction = lessons => {
-  return {
-    type: "GET_LESSONS",
-    payload: lessons
-  };
-};
-
 const deleteLessonAction = (date, id) => {
   return {
     type: "DELETE_LESSON",
@@ -71,8 +64,26 @@ export const loadLessons = coach => {
 };
 
 export const updateLesson = lesson => {
+  console.log(lesson);
   return dispatch => {
-    dispatch(updateLessonAction(lesson));
+    return fetch(
+      `http://localhost:3000/api/v1/coaches/${lesson.coach.id}/lessons/${
+        lesson.id
+      }`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          lesson: lesson
+        })
+      }
+    )
+      .then(r => r.json())
+      .then(res => {
+        dispatch(updateLessonAction(lesson));
+      });
   };
 };
 
