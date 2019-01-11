@@ -13,11 +13,11 @@ const updateLessonAction = lesson => {
   };
 };
 
-const deleteLessonAction = (date, id) => {
+const deleteLessonAction = (id, date) => {
   return {
     type: "DELETE_LESSON",
-    date: date,
-    id: id
+    id: id,
+    date: date
   };
 };
 
@@ -87,8 +87,18 @@ export const updateLesson = lesson => {
   };
 };
 
-export const deleteLesson = (date, id) => {
+export const deleteLesson = (user, lesson_id, date) => {
+  console.log(user, lesson_id);
   return dispatch => {
-    dispatch(deleteLessonAction(date, id));
+    return (
+      fetch(
+        `http://localhost:3000/api/v1/coaches/${user.id}/lessons/${lesson_id}`,
+        {
+          method: "DELETE"
+        }
+      )
+        // .then(r => r.json())
+        .then(dispatch(deleteLessonAction(lesson_id, date)))
+    );
   };
 };

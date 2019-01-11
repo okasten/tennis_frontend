@@ -70,7 +70,7 @@ class Day extends Component {
   };
 
   handleDeleteLesson = id => {
-    this.props.deleteLesson(this.props.date, id);
+    this.props.deleteLesson(this.props.user, id, this.props.date);
   };
 
   render() {
@@ -135,7 +135,8 @@ const mapDispatchToProps = dispatch => {
   return {
     createLesson: payload => dispatch(actions.createLesson(payload)),
     updateLesson: payload => dispatch(actions.updateLesson(payload)),
-    deleteLesson: (date, id) => dispatch(actions.deleteLesson(date, id))
+    deleteLesson: (user, id, date) =>
+      dispatch(actions.deleteLesson(user, id, date))
   };
 };
 
