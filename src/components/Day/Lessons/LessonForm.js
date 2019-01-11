@@ -18,15 +18,22 @@ const lessonForm = props => {
       method="post"
       onSubmit={e => props.handleCreateUpdateLesson(e, props.lesson)}
     >
+      <input
+        type="text"
+        name="player"
+        className="description"
+        value={props.lesson.player}
+        placeholder="Student Name"
+      />
       <textarea
         className="description"
-        placeholder="Lesson"
+        placeholder="Any notes?"
         maxLength="30"
         defaultValue={props.lesson.description}
       />
       <TimePicker
         showSecond={false}
-        placeholder={time}
+        placeholder="Time"
         format="h:mm a"
         use12Hours
         inputReadOnly

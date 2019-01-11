@@ -11,7 +11,7 @@ const lesson = props => (
         <i className="fas fa-edit" />
       </button>
     </div>
-    <strong>{props.lesson.description}</strong>
+    <strong>{props.lesson.player ? props.lesson.player : "Available"}</strong>
     <time>{props.lesson.time}</time>
   </article>
 );

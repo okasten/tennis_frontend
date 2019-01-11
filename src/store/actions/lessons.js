@@ -1,5 +1,4 @@
 const createLessonAction = lesson => {
-  console.log(lesson);
   return {
     type: "CREATE_LESSON",
     lesson: lesson
@@ -54,6 +53,7 @@ export const createLesson = lesson => {
 };
 
 export const loadLessons = coach => {
+  console.log(coach);
   return dispatch => {
     return fetch(`http://localhost:3000/api/v1/coaches/${coach.id}/lessons`)
       .then(r => r.json())

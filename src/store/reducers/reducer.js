@@ -12,7 +12,6 @@ const logOutUser = (prevState, action) => {
 };
 
 const createLesson = (prevState, action) => {
-  console.log(action);
   const lesson = {
     id: action.id,
     time: action.time,

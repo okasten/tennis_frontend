@@ -18,7 +18,11 @@ export const logIn = user => {
 //sign up a new user
 export const createUser = user => {
   let userName = user.firstName + " " + user.lastName;
-  console.log(user);
+  let currentLocation = navigator.geolocation.getCurrentPosition(location =>
+    console.log(location)
+  );
+
+  console.log(currentLocation, user);
   return function thunk(dispatch) {
     return fetch(`http://localhost:3000/api/v1/${user.userType}`, {
       method: "POST",
@@ -30,7 +34,8 @@ export const createUser = user => {
           name: userName,
           password: user.password,
           email: user.email,
-          username: user.username
+          username: user.username,
+          location: currentLocation
         }
       })
     })
@@ -39,7 +44,7 @@ export const createUser = user => {
         console.log(res);
         localStorage.setItem("token", res.jwt);
         localStorage.setItem("type", res.type);
-        dispatch(logIn(res));
+        dispatch(logIn(res.user));
       })
       .catch(console.error);
   };
@@ -65,7 +70,7 @@ export const logInUser = user => {
       .then(res => {
         localStorage.setItem("token", res.jwt);
         localStorage.setItem("type", res.type);
-        dispatch(logIn(res));
+        dispatch(logIn(res.user));
       });
   };
 };

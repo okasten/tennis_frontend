@@ -34,11 +34,11 @@ class App extends Component {
         }
       })
         .then(response => response.json())
-        .then(user => {
+        .then(res => {
           this.setState({
             logIn: false
           });
-          this.props.logIn(user[type]);
+          this.props.logIn(res.user);
         });
     }
   }

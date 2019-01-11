@@ -124,7 +124,6 @@ class Day extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     lessons: state,
     user: state.currentUser
