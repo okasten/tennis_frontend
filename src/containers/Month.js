@@ -4,8 +4,10 @@ import HeaderMonth from "../components/HeaderMonth";
 import HeaderWeekDays from "../components/HeaderWeekDays";
 import Day from "../components/Day/Day";
 import "./Month.scss";
+import { connect } from "react-redux";
+import * as actions from "./../store/actions";
 
-export default class Month extends Component {
+class Month extends Component {
   state = {
     currentMonth: {},
     nextMonth: {},
@@ -14,6 +16,7 @@ export default class Month extends Component {
 
   componentDidMount() {
     this.createState(this.props);
+    this.props.loadLessons(this.props.user);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -104,3 +107,20 @@ export default class Month extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.currentUser
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadLessons: payload => dispatch(actions.loadLessons(payload))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Month);

@@ -74,7 +74,11 @@ class Day extends Component {
   };
 
   render() {
+    // console.log(this.props.lessons);
     const lessons = _sortBy(this.props.lessons[this.props.date], "time") || [];
+
+    // const lessons = _sortBy(this.props.lessons[this.props.date], "time") || [];
+    // console.log(lessons);
 
     const cssClasses = this.props.firstDayIndex
       ? `day first-index-${this.props.firstDayIndex}`
@@ -120,8 +124,9 @@ class Day extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    lessons: state.lessons,
+    lessons: state,
     user: state.currentUser
   };
 };

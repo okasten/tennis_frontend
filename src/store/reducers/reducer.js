@@ -1,6 +1,6 @@
 import uniqueId from "uuid/v1";
 
-const initialState = { currentUser: null, lessons: [] };
+const initialState = { currentUser: null };
 
 const logInUser = (prevState, action) => {
   console.log(action.payload);
@@ -12,17 +12,19 @@ const logOutUser = (prevState, action) => {
 };
 
 const createLesson = (prevState, action) => {
+  console.log(action);
   const lesson = {
-    id: uniqueId(),
-    time: action.lesson.time,
-    description: action.lesson.description,
-    color: action.lesson.color
+    id: action.id,
+    time: action.time,
+    description: action.notes,
+    color: action.color,
+    coach: action.coach,
+    date: action.date
   };
-
   return {
     ...prevState,
-    [action.lesson.day]: prevState[action.lesson.day]
-      ? prevState[action.lesson.day].concat(lesson)
+    [action.date]: prevState[action.date]
+      ? prevState[action.date].concat(lesson)
       : [lesson]
   };
 };
@@ -62,7 +64,7 @@ const reducer = (prevState = initialState, action) => {
     case "LOG_OUT":
       return logOutUser(prevState, action);
     case "CREATE_LESSON":
-      return createLesson(prevState, action);
+      return createLesson(prevState, action.lesson);
     case "UPDATE_LESSON":
       return updateLesson(prevState, action);
     case "DELETE_LESSON":

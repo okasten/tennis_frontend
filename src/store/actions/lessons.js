@@ -1,4 +1,5 @@
 const createLessonAction = lesson => {
+  console.log(lesson);
   return {
     type: "CREATE_LESSON",
     lesson: lesson
@@ -9,6 +10,13 @@ const updateLessonAction = lesson => {
   return {
     type: "UPDATE_LESSON",
     lesson: lesson
+  };
+};
+
+const getLessonsAction = lessons => {
+  return {
+    type: "GET_LESSONS",
+    payload: lessons
   };
 };
 
@@ -43,10 +51,22 @@ export const createLesson = lesson => {
       }
     )
       .then(r => r.json())
-      .then(console.log);
+      .then(res => {
+        console.log(res);
+        dispatch(createLessonAction(lesson));
+      });
 
-    //   dispatch(createLessonAction(lesson));
     // };
+  };
+};
+
+export const loadLessons = coach => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/coaches/${coach.id}/lessons`)
+      .then(r => r.json())
+      .then(res => {
+        res.forEach(lesson => dispatch(createLessonAction(lesson)));
+      });
   };
 };
 

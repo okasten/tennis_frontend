@@ -1,3 +1,8 @@
-export { createLesson, updateLesson, deleteLesson } from "./lessons";
+export {
+  createLesson,
+  updateLesson,
+  deleteLesson,
+  loadLessons
+} from "./lessons";
 
 export { createUser, logInUser, logOutUser, logIn } from "./users";
