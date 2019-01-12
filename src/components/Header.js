@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, MenuItem, Nav, NavItem, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import CoachCalendars from "../containers/CoachCalendars";
 
 class Header extends Component {
   render() {
@@ -20,9 +21,20 @@ class Header extends Component {
               <MenuItem divider />
               <MenuItem eventKey={3.4}>Separated link</MenuItem>
             </NavDropdown>
-            <NavItem eventKey={1} href="#">
-              Students
-            </NavItem>
+
+            {this.props.userType === "coach" ? (
+              <NavItem eventKey={1} href="#">
+                Students
+              </NavItem>
+            ) : (
+              <NavItem
+                eventKey={1}
+                onClick={this.props.bookLessonsPage}
+                href="#"
+              >
+                Book A Lesson
+              </NavItem>
+            )}
             <NavItem eventKey={2} href="#">
               Profile
             </NavItem>

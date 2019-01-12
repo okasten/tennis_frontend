@@ -7,11 +7,13 @@ import Header from "./components/Header";
 import { connect } from "react-redux";
 import LogInForm from "./components/LogInForm";
 import { logOutUser, logIn } from "./store/actions";
+import CoachCalendars from "./containers/CoachCalendars";
 
 class App extends Component {
   state = {
     logIn: false,
-    context: ""
+    context: "",
+    bookLessonsPage: false
   };
   handleLogIn = (context, user = null) => {
     this.setState({
@@ -53,13 +55,22 @@ class App extends Component {
     this.props.handleLogOut();
   };
 
+  bookLessonsPage = () => {
+    this.setState({
+      bookLessonsPage: !this.state.bookLessonsPage
+    });
+  };
+
   render() {
+    let userType = localStorage.getItem("type");
     return (
       <React.Fragment>
         <Header
           handleLogIn={this.handleLogIn}
           user={this.props.user}
           handleLogOut={this.handleLogOut}
+          userType={userType}
+          bookLessonsPage={this.bookLessonsPage}
         />
         {this.state.logIn ? (
           <LogInForm
@@ -67,16 +78,7 @@ class App extends Component {
             pullUpForm={this.state.context}
           />
         ) : null}
-        {this.props.user ? (
-          <Calendar>
-            <HashRouter>
-              <Switch>
-                <Route path="/:year/:month" component={Month} />
-                <Route path="/" exact component={Month} />
-              </Switch>
-            </HashRouter>
-          </Calendar>
-        ) : null}
+        {this.state.bookLessonsPage ? <CoachCalendars /> : null}
       </React.Fragment>
     );
   }

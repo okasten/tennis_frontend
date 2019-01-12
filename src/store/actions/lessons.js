@@ -53,23 +53,24 @@ export const createLesson = lesson => {
 };
 
 export const loadLessons = coach => {
-  console.log(coach);
   return dispatch => {
     return fetch(`http://localhost:3000/api/v1/coaches/${coach.id}/lessons`)
       .then(r => r.json())
       .then(res => {
-        res.forEach(lesson => dispatch(createLessonAction(lesson)));
+        if (
+          res.length
+            ? res.forEach(lesson => dispatch(createLessonAction(lesson)))
+            : null
+        );
       });
   };
 };
 
-export const updateLesson = lesson => {
-  console.log(lesson);
+export const updateLesson = (user, userType, lesson) => {
+  console.log(user, userType, lesson);
   return dispatch => {
     return fetch(
-      `http://localhost:3000/api/v1/coaches/${lesson.coach.id}/lessons/${
-        lesson.id
-      }`,
+      `http://localhost:3000/api/v1/coaches/${user.id}/lessons/${lesson.id}`,
       {
         method: "PATCH",
         headers: {

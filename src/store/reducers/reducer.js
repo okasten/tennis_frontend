@@ -8,7 +8,11 @@ const logInUser = (prevState, action) => {
 };
 
 const logOutUser = (prevState, action) => {
-  return { ...prevState, currentUser: action.payload };
+  return { currentUser: action.payload };
+};
+
+const getAllCoaches = (prevState, action) => {
+  return { coaches: action.payload };
 };
 
 const createLesson = (prevState, action) => {
@@ -64,6 +68,8 @@ const reducer = (prevState = initialState, action) => {
       return logInUser(prevState, action);
     case "LOG_OUT":
       return logOutUser(prevState, action);
+    case "ALL_COACHES":
+      return getAllCoaches(prevState, action);
     case "CREATE_LESSON":
       return createLesson(prevState, action.lesson);
     case "UPDATE_LESSON":

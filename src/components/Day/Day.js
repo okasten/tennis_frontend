@@ -40,14 +40,29 @@ class Day extends Component {
     });
   };
 
-  handleCreateUpdateLesson = (e, update) => {
+  handleCreateUpdateLesson = (e, update, userType) => {
     e.preventDefault();
 
     const form = e.target;
     const description = form.querySelector(".description").value.trim();
+    let user;
+    if (userType === "player") {
+      let user = this.props.user;
+    } else {
+      let user = null;
+    }
 
     if (description.length) {
-      const payload = {
+      const payloadUpdate = {
+        date: this.props.date,
+        time: form.querySelector(".rc-time-picker-input").value,
+        notes: description,
+        location: this.state.editLesson.location,
+        player: user,
+        color: this.state.editLesson.color || defaultColor
+      };
+
+      const payloadCreate = {
         date: this.props.date,
         time: form.querySelector(".rc-time-picker-input").value,
         notes: description,
@@ -58,10 +73,10 @@ class Day extends Component {
       };
 
       if (update.id) {
-        payload["id"] = update.id;
-        this.props.updateLesson(payload);
+        payloadUpdate["id"] = update.id;
+        this.props.updateLesson(this.props.user, userType, payloadUpdate);
       } else {
-        this.props.createLesson(payload);
+        this.props.createLesson(payloadCreate);
       }
     }
 
@@ -133,7 +148,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createLesson: payload => dispatch(actions.createLesson(payload)),
-    updateLesson: payload => dispatch(actions.updateLesson(payload)),
+    updateLesson: (user, userType, payload) =>
+      dispatch(actions.updateLesson(user, userType, payload)),
     deleteLesson: (user, id, date) =>
       dispatch(actions.deleteLesson(user, id, date))
   };
