@@ -12,7 +12,7 @@ const logOutUser = (prevState, action) => {
 };
 
 const getAllCoaches = (prevState, action) => {
-  return { coaches: action.payload };
+  return { currentUser: prevState.currentUser, coaches: action.payload };
 };
 
 const createLesson = (prevState, action) => {
