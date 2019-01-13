@@ -62,6 +62,14 @@ const deleteLesson = (prevState, action) => {
   };
 };
 
+const clearLessons = (prevState, action) => {
+  console.log(prevState, action);
+  return {
+    currentUser: prevState.currentUser,
+    coaches: prevState.coaches
+  };
+};
+
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -70,6 +78,8 @@ const reducer = (prevState = initialState, action) => {
       return logOutUser(prevState, action);
     case "ALL_COACHES":
       return getAllCoaches(prevState, action);
+    case "CLEAR_LESSONS":
+      return clearLessons(prevState, action);
     case "CREATE_LESSON":
       return createLesson(prevState, action.lesson);
     case "UPDATE_LESSON":

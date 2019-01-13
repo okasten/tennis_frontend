@@ -5,6 +5,12 @@ const createLessonAction = lesson => {
   };
 };
 
+const clearLessonsAction = () => {
+  return {
+    type: "CLEAR_LESSONS"
+  };
+};
+
 const updateLessonAction = lesson => {
   return {
     type: "UPDATE_LESSON",
@@ -57,9 +63,12 @@ export const loadLessons = coach => {
     return fetch(`http://localhost:3000/api/v1/coaches/${coach.id}/lessons`)
       .then(r => r.json())
       .then(res => {
+        dispatch(clearLessonsAction());
         if (
           res.length
-            ? res.forEach(lesson => dispatch(createLessonAction(lesson)))
+            ? res.forEach(lesson => {
+                dispatch(createLessonAction(lesson));
+              })
             : null
         );
       });
