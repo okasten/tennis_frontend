@@ -38,7 +38,8 @@ class App extends Component {
         .then(response => response.json())
         .then(res => {
           this.setState({
-            logIn: false
+            logIn: false,
+            bookLessonsPage: false
           });
           this.props.logIn(res.user);
         });
@@ -48,8 +49,10 @@ class App extends Component {
   handleLogOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("type");
+
     this.setState({
-      logIn: true
+      logIn: true,
+      bookLessonsPage: false
     });
 
     this.props.handleLogOut();

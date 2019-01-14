@@ -15,39 +15,30 @@ import * as actions from "../store/actions";
 class CoachCalendars extends Component {
   state = {
     search: "",
-    filteredSearch: ""
+    filteredSearch: []
   };
 
   componentDidMount() {
     console.log("GET COACHES");
     this.props.getCoaches();
-    this.setState({
-      filteredSearch: this.props.coaches
-    });
   }
 
-  handleChange = e => {
-    let newArray = this.props.coaches.filter(coach => {
-      coach.name.includes(this.state.search);
-    });
-
-    this.setState({
-      search: e.target.value,
-      filteredSearch: newArray
-    });
-  };
-
   chooseCoach = coach => {
-    console.log(coach);
     this.props.loadLessons(coach);
   };
+
   render() {
-    console.log(this.state);
+    let userType = localStorage.getItem("type");
     let coaches = [];
+
     if (this.props.coaches) {
       coaches = this.props.coaches.map(coach => {
         return (
-          <ListGroupItem onClick={() => this.chooseCoach(coach)}>
+          <ListGroupItem
+            key={coach}
+            value={coach}
+            onClick={() => this.chooseCoach(coach)}
+          >
             {coach.name}
           </ListGroupItem>
         );
@@ -56,15 +47,15 @@ class CoachCalendars extends Component {
 
     return (
       <React.Fragment>
-        <ControlLabel>Search Coaches</ControlLabel>
-        <input
-          onChange={this.handleChange}
-          type="text"
-          placeholder="Find A Coach"
-          value={this.state.search}
-          name="search"
-        />
-        <ListGroup>{coaches}</ListGroup>
+        {userType !== "coach" ? (
+          <React.Fragment>
+            <label>Search Coaches</label>
+            <ListGroup>{coaches}</ListGroup>
+          </React.Fragment>
+        ) : (
+          this.chooseCoach(this.props.user)
+        )}
+
         <Calendar>
           <HashRouter>
             <Switch>
@@ -80,7 +71,8 @@ class CoachCalendars extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    coaches: state.coaches
+    coaches: state.coaches,
+    user: state.currentUser
   };
 };
 

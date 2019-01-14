@@ -75,7 +75,7 @@ class Day extends Component {
       if (update.id) {
         payloadUpdate["id"] = update.id;
         this.props.updateLesson(this.props.user, userType, payloadUpdate);
-      } else {
+      } else if (userType === "coach") {
         this.props.createLesson(payloadCreate);
       }
     }
@@ -85,6 +85,7 @@ class Day extends Component {
   };
 
   handleDeleteLesson = id => {
+    console.log(id);
     this.props.deleteLesson(this.props.user, id, this.props.date);
   };
 
