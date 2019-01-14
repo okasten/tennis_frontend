@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions";
 import { Form, FormGroup, Button } from "react-bootstrap";
 
+//if userType === "coach" then make a dispatch call to getPlayers and make a select drop down for who they want to send it to
+
 class NewConversationForm extends Component {
   state = {
     to: "",
