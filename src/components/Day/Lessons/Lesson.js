@@ -1,24 +1,45 @@
-import React from "react";
+import React, { Component } from "react";
 import "./lesson.scss";
-
-const lesson = props => (
-  <article className="lesson" style={{ background: props.lesson.color }}>
-    <div className="tools">
-      {localStorage.getItem("type") === "coach" ? (
-        <button onClick={() => props.handleDeleteLesson(props.lesson.id)}>
-          <i className="fas fa-trash-alt" />
+class Lesson extends Component {
+  determinePermissions = () => {
+    let userType = localStorage.getItem("type");
+    if (userType === "coach") {
+      return (
+        <React.Fragment>
+          <button
+            onClick={() => this.props.handleDeleteLesson(this.props.lesson.id)}
+          >
+            <i className="fas fa-trash-alt" />
+          </button>
+          <button onClick={() => this.props.handleSetEdit(this.props.lesson)}>
+            <i className="fas fa-edit" />
+          </button>
+        </React.Fragment>
+      );
+    } else if (!this.props.lesson.player) {
+      return (
+        <button onClick={() => this.props.handleSetEdit(this.props.lesson)}>
+          <i className="fas fa-edit" />
         </button>
-      ) : null}
+      );
+    }
+  };
+  render() {
+    return (
+      <article
+        className="lesson"
+        style={{ background: this.props.lesson.color }}
+      >
+        <div className="tools">{this.determinePermissions()}</div>
+        <strong>
+          {this.props.lesson.player
+            ? this.props.lesson.player.name
+            : "Available"}
+        </strong>
+        <time>{this.props.lesson.time}</time>
+      </article>
+    );
+  }
+}
 
-      <button onClick={() => props.handleSetEdit(props.lesson)}>
-        <i className="fas fa-edit" />
-      </button>
-    </div>
-    <strong>
-      {props.lesson.player ? props.lesson.player.name : "Available"}
-    </strong>
-    <time>{props.lesson.time}</time>
-  </article>
-);
-
-export default lesson;
+export default Lesson;
