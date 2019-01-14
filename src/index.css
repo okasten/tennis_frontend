@@ -22,3 +22,8 @@ button {
   outline: 0;
   cursor: pointer;
 }
+.convo-form {
+  width: 50%;
+  margin-left: 25%;
+  justify-content: center;
+}

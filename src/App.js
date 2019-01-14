@@ -8,12 +8,14 @@ import { connect } from "react-redux";
 import LogInForm from "./components/LogInForm";
 import { logOutUser, logIn } from "./store/actions";
 import CoachCalendars from "./containers/CoachCalendars";
+import MessagesPage from "./components/MessagesPage";
 
 class App extends Component {
   state = {
     logIn: false,
     context: "",
-    bookLessonsPage: false
+    bookLessonsPage: false,
+    messagesPage: false
   };
   handleLogIn = (context, user = null) => {
     this.setState({
@@ -39,7 +41,8 @@ class App extends Component {
         .then(res => {
           this.setState({
             logIn: false,
-            bookLessonsPage: false
+            bookLessonsPage: false,
+            messagesPage: false
           });
           this.props.logIn(res.user);
         });
@@ -52,7 +55,8 @@ class App extends Component {
 
     this.setState({
       logIn: true,
-      bookLessonsPage: false
+      bookLessonsPage: false,
+      messagesPage: false
     });
 
     this.props.handleLogOut();
@@ -60,7 +64,15 @@ class App extends Component {
 
   bookLessonsPage = () => {
     this.setState({
-      bookLessonsPage: !this.state.bookLessonsPage
+      bookLessonsPage: !this.state.bookLessonsPage,
+      messagesPage: false
+    });
+  };
+
+  messagesPage = () => {
+    this.setState({
+      bookLessonsPage: false,
+      messagesPage: !this.state.messagesPage
     });
   };
 
@@ -74,6 +86,7 @@ class App extends Component {
           handleLogOut={this.handleLogOut}
           userType={userType}
           bookLessonsPage={this.bookLessonsPage}
+          messagesPage={this.messagesPage}
         />
         {this.state.logIn ? (
           <LogInForm
@@ -82,6 +95,7 @@ class App extends Component {
           />
         ) : null}
         {this.state.bookLessonsPage ? <CoachCalendars /> : null}
+        {this.state.messagesPage ? <MessagesPage /> : null}
       </React.Fragment>
     );
   }

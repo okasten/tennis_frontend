@@ -76,7 +76,6 @@ export const loadLessons = coach => {
 };
 
 export const updateLesson = (user, userType, lesson) => {
-  console.log(user, userType, lesson);
   return dispatch => {
     return fetch(
       `http://localhost:3000/api/v1/coaches/${user.id}/lessons/${lesson.id}`,

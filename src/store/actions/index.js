@@ -6,3 +6,5 @@ export {
 } from "./lessons";
 
 export { createUser, logInUser, logOutUser, logIn, getCoaches } from "./users";
+
+export { loadConversations, sendMessage } from "./conversations";

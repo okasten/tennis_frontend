@@ -28,15 +28,19 @@ class Header extends Component {
                   Students
                 </NavItem>
                 <NavItem onClick={this.props.bookLessonsPage}>Calendar</NavItem>
+                <NavItem onClick={this.props.messagesPage}>Messages</NavItem>
               </React.Fragment>
             ) : (
-              <NavItem
-                eventKey={1}
-                onClick={this.props.bookLessonsPage}
-                href="#"
-              >
-                Book A Lesson
-              </NavItem>
+              <React.Fragment>
+                <NavItem
+                  eventKey={1}
+                  onClick={this.props.bookLessonsPage}
+                  href="#"
+                >
+                  Book A Lesson
+                </NavItem>
+                <NavItem onClick={this.props.messagesPage}>Messages</NavItem>
+              </React.Fragment>
             )}
             <NavItem eventKey={2} href="#">
               Profile
