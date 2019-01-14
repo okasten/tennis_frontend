@@ -46,12 +46,14 @@ class Day extends Component {
     const form = e.target;
     const description = form.querySelector(".description").value.trim();
     let user;
-    if (userType === "player") {
-      let user = this.props.user;
-    } else {
-      let user = null;
-    }
 
+    if (userType === "player") {
+      console.log(this.props.user);
+      user = this.props.user;
+    } else {
+      user = null;
+    }
+    console.log(user);
     if (description.length) {
       const payloadUpdate = {
         date: this.props.date,
@@ -90,11 +92,7 @@ class Day extends Component {
   };
 
   render() {
-    // console.log(this.props.lessons);
     const lessons = _sortBy(this.props.lessons[this.props.date], "time") || [];
-
-    // const lessons = _sortBy(this.props.lessons[this.props.date], "time") || [];
-    // console.log(lessons);
 
     const cssClasses = this.props.firstDayIndex
       ? `day first-index-${this.props.firstDayIndex}`

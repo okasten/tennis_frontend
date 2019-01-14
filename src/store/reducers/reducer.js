@@ -16,13 +16,15 @@ const getAllCoaches = (prevState, action) => {
 };
 
 const createLesson = (prevState, action) => {
+  console.log(action);
   const lesson = {
     id: action.id,
     time: action.time,
     description: action.notes,
     color: action.color,
     coach: action.coach,
-    date: action.date
+    date: action.date,
+    player: action.player
   };
   return {
     ...prevState,
@@ -42,7 +44,8 @@ const updateLesson = (prevState, action) => {
         id: lesson.id,
         time: action.lesson.time,
         description: action.lesson.notes,
-        color: action.lesson.color
+        color: action.lesson.color,
+        player: action.lesson.player
       };
     }
     lessons.push(lesson);

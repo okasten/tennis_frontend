@@ -21,6 +21,8 @@ const lessonForm = props => {
       method="post"
       onSubmit={e => props.handleCreateUpdateLesson(e, props.lesson, userType)}
     >
+      {console.log(props.lesson)}
+      {props.lesson.student}
       <textarea
         className="description"
         placeholder="Any notes?"

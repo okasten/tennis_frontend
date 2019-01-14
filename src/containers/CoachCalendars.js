@@ -69,7 +69,6 @@ class CoachCalendars extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state);
   return {
     coaches: state.coaches,
     user: state.currentUser
