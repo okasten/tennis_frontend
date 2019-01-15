@@ -82,6 +82,13 @@ const getConversations = (prevState, action) => {
     conversations: action.payload
   };
 };
+
+const allMessages = (prevState, action) => {
+  return {
+    ...prevState,
+    messages: action.payload
+  };
+};
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -94,6 +101,8 @@ const reducer = (prevState = initialState, action) => {
       return getAllPlayers(prevState, action);
     case "GET_CONVERSATIONS":
       return getConversations(prevState, action);
+    case "ALL_MESSAGES":
+      return allMessages(prevState, action);
     case "CLEAR_LESSONS":
       return clearLessons(prevState, action);
     case "CREATE_LESSON":

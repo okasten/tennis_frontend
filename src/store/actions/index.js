@@ -14,4 +14,9 @@ export {
   getPlayers
 } from "./users";
 
-export { loadConversations, sendMessage } from "./conversations";
+export {
+  loadConversations,
+  sendMessage,
+  getMessages,
+  sendReply
+} from "./conversations";
