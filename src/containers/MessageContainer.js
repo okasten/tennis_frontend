@@ -42,6 +42,11 @@ class MessageContainer extends Component {
       this.props.convo,
       this.state.content
     );
+
+    this.setState({
+      reply: !this.state.reply,
+      content: ""
+    });
   };
 
   render() {
