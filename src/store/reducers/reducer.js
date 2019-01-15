@@ -15,6 +15,10 @@ const getAllCoaches = (prevState, action) => {
   return { currentUser: prevState.currentUser, coaches: action.payload };
 };
 
+const getAllPlayers = (prevState, action) => {
+  return { ...prevState, players: action.payload };
+};
+
 const createLesson = (prevState, action) => {
   console.log(action);
   const lesson = {
@@ -86,6 +90,8 @@ const reducer = (prevState = initialState, action) => {
       return logOutUser(prevState, action);
     case "ALL_COACHES":
       return getAllCoaches(prevState, action);
+    case "ALL_PLAYERS":
+      return getAllPlayers(prevState, action);
     case "GET_CONVERSATIONS":
       return getConversations(prevState, action);
     case "CLEAR_LESSONS":

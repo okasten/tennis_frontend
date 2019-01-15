@@ -13,6 +13,15 @@ class NewConversationForm extends Component {
     content: ""
   };
 
+  componentDidMount() {
+    let userType = localStorage.getItem("type");
+    if (userType === "coach") {
+      this.props.getPlayers();
+    } else {
+      this.props.getCoaches();
+    }
+  }
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -32,6 +41,8 @@ class NewConversationForm extends Component {
   };
 
   render() {
+    console.log("players", this.props.players);
+    console.log("coaches", this.props.coaches);
     return (
       <Form horizontal className="convo-form">
         <FormGroup>
@@ -69,14 +80,18 @@ class NewConversationForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.currentUser
+    user: state.currentUser,
+    players: state.players,
+    coaches: state.coaches
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     sendMessage: (type, messageData, user) =>
-      dispatch(actions.sendMessage(type, messageData, user))
+      dispatch(actions.sendMessage(type, messageData, user)),
+    getPlayers: () => dispatch(actions.getPlayers()),
+    getCoaches: () => dispatch(actions.getCoaches())
   };
 };
 

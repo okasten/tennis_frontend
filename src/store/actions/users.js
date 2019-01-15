@@ -21,6 +21,13 @@ export const allCoaches = coaches => {
   };
 };
 
+export const allPlayers = players => {
+  return {
+    type: "ALL_PLAYERS",
+    payload: players
+  };
+};
+
 //Thunk Creators
 //sign up a new user
 export const createUser = user => {
@@ -89,5 +96,13 @@ export const getCoaches = () => {
       .then(res => {
         dispatch(allCoaches(res));
       });
+  };
+};
+
+export const getPlayers = () => {
+  return function thunk(dispatch) {
+    return fetch("http://localhost:3000/api/v1/players")
+      .then(r => r.json())
+      .then(res => dispatch(allPlayers(res)));
   };
 };
