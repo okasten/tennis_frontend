@@ -9,13 +9,16 @@ import LogInForm from "./components/LogInForm";
 import { logOutUser, logIn } from "./store/actions";
 import CoachCalendars from "./containers/CoachCalendars";
 import MessagesPage from "./components/MessagesPage";
+import ProfilePage from "./components/ProfilePage";
+import Weather from "./components/Weather";
 
 class App extends Component {
   state = {
     logIn: false,
     context: "",
     bookLessonsPage: false,
-    messagesPage: false
+    messagesPage: false,
+    profilePage: false
   };
   handleLogIn = (context, user = null) => {
     this.setState({
@@ -56,7 +59,8 @@ class App extends Component {
     this.setState({
       logIn: true,
       bookLessonsPage: false,
-      messagesPage: false
+      messagesPage: false,
+      profilePage: false
     });
 
     this.props.handleLogOut();
@@ -64,15 +68,25 @@ class App extends Component {
 
   bookLessonsPage = () => {
     this.setState({
-      bookLessonsPage: !this.state.bookLessonsPage,
-      messagesPage: false
+      bookLessonsPage: true,
+      messagesPage: false,
+      profilePage: false
     });
   };
 
   messagesPage = () => {
     this.setState({
       bookLessonsPage: false,
-      messagesPage: !this.state.messagesPage
+      messagesPage: true,
+      profilePage: false
+    });
+  };
+
+  profilePage = () => {
+    this.setState({
+      bookLessonsPage: false,
+      messagesPage: false,
+      profilePage: true
     });
   };
 
@@ -87,6 +101,7 @@ class App extends Component {
           userType={userType}
           bookLessonsPage={this.bookLessonsPage}
           messagesPage={this.messagesPage}
+          profilePage={this.profilePage}
         />
         {this.state.logIn ? (
           <LogInForm
@@ -94,8 +109,13 @@ class App extends Component {
             pullUpForm={this.state.context}
           />
         ) : null}
-        {this.state.bookLessonsPage ? <CoachCalendars /> : null}
+        {this.state.bookLessonsPage ? (
+          <React.Fragment>
+            <CoachCalendars />
+          </React.Fragment>
+        ) : null}
         {this.state.messagesPage ? <MessagesPage /> : null}
+        {this.state.profilePage ? <ProfilePage /> : null}
       </React.Fragment>
     );
   }

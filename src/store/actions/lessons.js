@@ -58,9 +58,9 @@ export const createLesson = lesson => {
   };
 };
 
-export const loadLessons = coach => {
+export const loadLessons = coach_id => {
   return dispatch => {
-    return fetch(`http://localhost:3000/api/v1/coaches/${coach.id}/lessons`)
+    return fetch(`http://localhost:3000/api/v1/coaches/${coach_id}/lessons`)
       .then(r => r.json())
       .then(res => {
         dispatch(clearLessonsAction());

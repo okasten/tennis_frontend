@@ -42,7 +42,7 @@ class Header extends Component {
                 <NavItem onClick={this.props.messagesPage}>Messages</NavItem>
               </React.Fragment>
             )}
-            <NavItem eventKey={2} href="#">
+            <NavItem eventKey={2} href="#" onClick={this.props.profilePage}>
               Profile
             </NavItem>
             <NavItem onClick={this.props.handleLogOut}>Log Out</NavItem>

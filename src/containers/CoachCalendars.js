@@ -12,8 +12,6 @@ import {
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
 import Weather from "../components/Weather";
-let lat;
-let long;
 
 class CoachCalendars extends Component {
   state = {
@@ -24,21 +22,14 @@ class CoachCalendars extends Component {
   componentDidMount() {
     console.log("GET COACHES");
     this.props.getCoaches();
-
-    navigator.geolocation.getCurrentPosition(position => {
-      lat = position.coords.latitude;
-      long = position.coords.longitude;
-
-      this.props.getWeather(lat, long);
-    });
   }
 
   geoSuccess = position => {
     let location;
   };
 
-  chooseCoach = coach => {
-    this.props.loadLessons(coach);
+  chooseCoach = e => {
+    this.props.loadLessons(e.target.value);
   };
 
   render() {
@@ -47,26 +38,21 @@ class CoachCalendars extends Component {
 
     if (this.props.coaches) {
       coaches = this.props.coaches.map(coach => {
-        return (
-          <ListGroupItem
-            key={coach}
-            value={coach}
-            onClick={() => this.chooseCoach(coach)}
-          >
-            {coach.name}
-          </ListGroupItem>
-        );
+        return <option value={coach.id}>{coach.name}</option>;
       });
     }
 
     return (
       <React.Fragment>
-        <Weather weather={this.props.weather} />
+        <Weather />
         <br />
         {userType !== "coach" ? (
           <React.Fragment>
-            <label>Search Coaches</label>
-            <ListGroup>{coaches}</ListGroup>
+            <label>Select a coach to view their calendar</label>
+            <select onChange={this.chooseCoach}>
+              <option>Select</option>
+              {coaches}
+            </select>
           </React.Fragment>
         ) : (
           this.chooseCoach(this.props.user)
@@ -86,8 +72,7 @@ class CoachCalendars extends Component {
 const mapStateToProps = state => {
   return {
     coaches: state.coaches,
-    user: state.currentUser,
-    weather: state.weather
+    user: state.currentUser
   };
 };
 
@@ -98,9 +83,6 @@ const mapDispatchToProps = dispatch => {
     },
     loadLessons: coach => {
       dispatch(actions.loadLessons(coach));
-    },
-    getWeather: (lat, long) => {
-      dispatch(actions.getWeather(lat, long));
     }
   };
 };

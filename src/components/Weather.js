@@ -7,8 +7,29 @@ import {
   WiDaySunny,
   WiDayShowers
 } from "weather-icons-react";
+import { connect } from "react-redux";
+import * as actions from "../store/actions";
+let lat;
+let long;
+let count = 0;
 
 class Weather extends Component {
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+
+      this.props.getWeather(lat, long);
+    });
+  }
+
+  shouldComponentUpdate() {
+    if (count > 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   chooseIcon = () => {
     let type = this.props.weather.currently.icon;
     if (type.includes("partly-cloudy")) {
@@ -19,10 +40,18 @@ class Weather extends Component {
       return <WiDaySunny />;
     } else if (type.includes("showers") || type.includes("rain")) {
       return <WiDayShowers />;
+    } else if (type.includes("clear")) {
+      return <WiDaySunny />;
     }
+  };
+
+  increaseCount = () => {
+    count = count + 1;
   };
   render() {
     console.log(this.props.weather);
+    console.log(count);
+    this.increaseCount();
     return (
       <React.Fragment>
         {this.props.weather ? (
@@ -38,4 +67,21 @@ class Weather extends Component {
   }
 }
 
-export default Weather;
+const mapStateToProps = state => {
+  return {
+    weather: state.weather,
+    lessons: state.lessons
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    getWeather: (lat, long) => {
+      dispatch(actions.getWeather(lat, long));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Weather);
