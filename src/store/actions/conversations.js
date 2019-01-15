@@ -16,6 +16,7 @@ export const loadConversations = (type, user) => {
 };
 
 export const sendMessage = (type, messageData, user) => {
+  console.log(messageData);
   return dispatch => {
     return fetch(
       `http://localhost:3000/api/v1/${type}/${user.id}/conversations`,

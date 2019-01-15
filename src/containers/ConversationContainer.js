@@ -22,7 +22,7 @@ class ConversationContainer extends Component {
   }
 
   getConvos = () => {
-    if (this.props.conversations > 0) {
+    if (this.props.conversations) {
       let conversations = this.props.conversations.map(convo => {
         return <Conversation convo={convo} />;
       });
@@ -38,6 +38,7 @@ class ConversationContainer extends Component {
     });
   };
   render() {
+    console.log(this.props.conversations);
     return (
       <React.Fragment>
         <h1>Conversations</h1>

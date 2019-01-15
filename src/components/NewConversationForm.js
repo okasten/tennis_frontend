@@ -40,19 +40,42 @@ class NewConversationForm extends Component {
     this.props.sendMessage(type, this.state, this.props.user);
   };
 
+  createOptionsForReceivers = () => {
+    let options;
+    if (this.props.coaches) {
+      options = this.props.coaches.map(coach => {
+        return (
+          <option name="to" value={coach.id}>
+            {coach.name}
+          </option>
+        );
+      });
+    } else if (this.props.players) {
+      options = this.props.players.map(player => {
+        return (
+          <option name="to" value={player.id}>
+            {player.name}
+          </option>
+        );
+      });
+    }
+
+    return options;
+  };
+
   render() {
-    console.log("players", this.props.players);
-    console.log("coaches", this.props.coaches);
     return (
       <Form horizontal className="convo-form">
         <FormGroup>
           <label>To: </label>
-          <input
-            type="text"
+          <select
             name="to"
-            value={this.state.to}
+            onClick={this.handleChange}
             onChange={this.handleChange}
-          />
+          >
+            <option>Select</option>
+            {this.createOptionsForReceivers()}
+          </select>
         </FormGroup>
         <FormGroup>
           <label>Subject: </label>
