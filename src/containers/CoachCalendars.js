@@ -11,6 +11,9 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
+import Weather from "../components/Weather";
+let lat;
+let long;
 
 class CoachCalendars extends Component {
   state = {
@@ -21,7 +24,18 @@ class CoachCalendars extends Component {
   componentDidMount() {
     console.log("GET COACHES");
     this.props.getCoaches();
+
+    navigator.geolocation.getCurrentPosition(position => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+
+      this.props.getWeather(lat, long);
+    });
   }
+
+  geoSuccess = position => {
+    let location;
+  };
 
   chooseCoach = coach => {
     this.props.loadLessons(coach);
@@ -47,6 +61,8 @@ class CoachCalendars extends Component {
 
     return (
       <React.Fragment>
+        <Weather weather={this.props.weather} />
+        <br />
         {userType !== "coach" ? (
           <React.Fragment>
             <label>Search Coaches</label>
@@ -55,7 +71,6 @@ class CoachCalendars extends Component {
         ) : (
           this.chooseCoach(this.props.user)
         )}
-
         <Calendar>
           <HashRouter>
             <Switch>
@@ -71,7 +86,8 @@ class CoachCalendars extends Component {
 const mapStateToProps = state => {
   return {
     coaches: state.coaches,
-    user: state.currentUser
+    user: state.currentUser,
+    weather: state.weather
   };
 };
 
@@ -82,6 +98,9 @@ const mapDispatchToProps = dispatch => {
     },
     loadLessons: coach => {
       dispatch(actions.loadLessons(coach));
+    },
+    getWeather: (lat, long) => {
+      dispatch(actions.getWeather(lat, long));
     }
   };
 };

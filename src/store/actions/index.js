@@ -20,3 +20,5 @@ export {
   getMessages,
   sendReply
 } from "./conversations";
+
+export { getWeather } from "./weather";

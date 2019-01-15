@@ -91,6 +91,13 @@ class Day extends Component {
     this.props.deleteLesson(this.props.user, id, this.props.date);
   };
 
+  determineEditability = () => {
+    if (localStorage === "coach" && this.props.editDay === this.props.day) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   render() {
     const lessons = _sortBy(this.props.lessons[this.props.date], "time") || [];
 
@@ -109,7 +116,7 @@ class Day extends Component {
           </button>
         )}
 
-        {this.props.editDay === this.props.day ? (
+        {this.determineEditability() ? (
           <LessonForm
             lesson={this.state.editLesson}
             handleSetEditDay={this.props.handleSetEditDay}

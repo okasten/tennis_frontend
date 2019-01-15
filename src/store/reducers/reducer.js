@@ -89,6 +89,14 @@ const allMessages = (prevState, action) => {
     messages: action.payload
   };
 };
+
+const loadWeather = (prevState, action) => {
+  console.log(action);
+  return {
+    ...prevState,
+    weather: action.payload
+  };
+};
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -111,6 +119,8 @@ const reducer = (prevState = initialState, action) => {
       return updateLesson(prevState, action);
     case "DELETE_LESSON":
       return deleteLesson(prevState, action);
+    case "LOAD_WEATHER":
+      return loadWeather(prevState, action);
     default:
       return prevState;
   }

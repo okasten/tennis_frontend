@@ -29,13 +29,16 @@ const lessonForm = props => {
         maxLength="30"
         defaultValue={props.lesson.description}
       />
-      <TimePicker
-        showSecond={false}
-        placeholder="Time"
-        format="h:mm a"
-        use12Hours
-        inputReadOnly
-      />
+      {userType === "coach" ? (
+        <TimePicker
+          showSecond={false}
+          placeholder="Time"
+          format="h:mm a"
+          use12Hours
+          inputReadOnly
+        />
+      ) : null}
+
       <ColorPicker
         className="color-picker"
         animation="slide-up"
