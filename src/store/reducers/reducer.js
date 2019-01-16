@@ -97,6 +97,13 @@ const loadWeather = (prevState, action) => {
     weather: action.payload
   };
 };
+
+const updateUser = (prevState, action) => {
+  return {
+    ...prevState,
+    currentUser: action.payload
+  };
+};
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -105,6 +112,8 @@ const reducer = (prevState = initialState, action) => {
       return logOutUser(prevState, action);
     case "ALL_COACHES":
       return getAllCoaches(prevState, action);
+    case "UPDATE_USER":
+      return updateUser(prevState, action);
     case "ALL_PLAYERS":
       return getAllPlayers(prevState, action);
     case "GET_CONVERSATIONS":

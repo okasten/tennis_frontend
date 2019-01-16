@@ -69,8 +69,7 @@ class Weather extends Component {
 
 const mapStateToProps = state => {
   return {
-    weather: state.weather,
-    lessons: state.lessons
+    weather: state.weather
   };
 };
 const mapDispatchToProps = dispatch => {

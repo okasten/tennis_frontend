@@ -14,6 +14,13 @@ export const logIn = user => {
   };
 };
 
+const updateCurrentUser = user => {
+  return {
+    type: "UPDATE_USER",
+    payload: user
+  };
+};
+
 export const allCoaches = coaches => {
   return {
     type: "ALL_COACHES",
@@ -104,5 +111,19 @@ export const getPlayers = () => {
     return fetch("http://localhost:3000/api/v1/players")
       .then(r => r.json())
       .then(res => dispatch(allPlayers(res)));
+  };
+};
+
+export const updateUser = (type, user, info) => {
+  return function thunk(dispatch) {
+    return fetch(`http://localhost:3000/api/v1/${type}/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ user: info })
+    })
+      .then(r => r.json())
+      .then(user => dispatch(updateCurrentUser(user)));
   };
 };

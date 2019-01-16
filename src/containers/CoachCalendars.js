@@ -55,7 +55,7 @@ class CoachCalendars extends Component {
             </select>
           </React.Fragment>
         ) : (
-          this.chooseCoach(this.props.user)
+          this.props.loadLessons(this.props.user.id)
         )}
         <Calendar>
           <HashRouter>

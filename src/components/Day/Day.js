@@ -57,28 +57,29 @@ class Day extends Component {
     if (description.length) {
       const payloadUpdate = {
         date: this.props.date,
-        time: form.querySelector(".rc-time-picker-input").value,
         notes: description,
+        time: this.state.editLesson.time,
         location: this.state.editLesson.location,
         player: user,
         color: this.state.editLesson.color || defaultColor
       };
+      if (userType === "coach") {
+        const payloadCreate = {
+          date: this.props.date,
+          time: form.querySelector(".rc-time-picker-input").value,
+          notes: description,
+          location: this.state.editLesson.location,
+          coach: this.props.user,
+          player: null,
+          color: this.state.editLesson.color || defaultColor
+        };
 
-      const payloadCreate = {
-        date: this.props.date,
-        time: form.querySelector(".rc-time-picker-input").value,
-        notes: description,
-        location: this.state.editLesson.location,
-        coach: this.props.user,
-        player: null,
-        color: this.state.editLesson.color || defaultColor
-      };
+        this.props.createLesson(payloadCreate);
+      }
 
       if (update.id) {
         payloadUpdate["id"] = update.id;
         this.props.updateLesson(this.props.user, userType, payloadUpdate);
-      } else if (userType === "coach") {
-        this.props.createLesson(payloadCreate);
       }
     }
 
@@ -92,7 +93,7 @@ class Day extends Component {
   };
 
   determineEditability = () => {
-    if (localStorage === "coach" && this.props.editDay === this.props.day) {
+    if (this.props.editDay === this.props.day) {
       return true;
     } else {
       return false;
