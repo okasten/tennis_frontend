@@ -66,22 +66,26 @@ class EditProfileForm extends Component {
           name="email"
           placeholder={this.props.user.email}
         />
-        <label>Age: </label>
-        <input
-          type="number"
-          value={this.state.age}
-          onChange={this.handleChange}
-          name="age"
-          placeholder={this.props.user.age}
-        />
-        <label>Level: </label>
-        <input
-          type="text"
-          value={this.state.level}
-          onChange={this.handleChange}
-          name="level"
-          placeholder={this.props.user.level}
-        />
+        {localStorage.getItem("type") === "player" ? (
+          <React.Fragment>
+            <label>Age: </label>
+            <input
+              type="number"
+              value={this.state.age}
+              onChange={this.handleChange}
+              name="age"
+              placeholder={this.props.user.age}
+            />
+            <label>Level: </label>
+            <input
+              type="text"
+              value={this.state.level}
+              onChange={this.handleChange}
+              name="level"
+              placeholder={this.props.user.level}
+            />
+          </React.Fragment>
+        ) : null}
         <Button onClick={this.handleUpdate}>Update Profile</Button>
       </form>
     );
