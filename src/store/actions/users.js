@@ -35,6 +35,13 @@ export const allPlayers = players => {
   };
 };
 
+export const loadStudents = students => {
+  return {
+    type: "LOAD_STUDENTS",
+    payload: students
+  };
+};
+
 //Thunk Creators
 //sign up a new user
 export const createUser = user => {
@@ -125,5 +132,13 @@ export const updateUser = (type, user, info) => {
     })
       .then(r => r.json())
       .then(user => dispatch(updateCurrentUser(user)));
+  };
+};
+
+export const getStudents = id => {
+  return function thunk(dispatch) {
+    return fetch(`http://localhost:3000/api/v1/coaches/${id}/students`)
+      .then(r => r.json())
+      .then(students => dispatch(loadStudents(students)));
   };
 };

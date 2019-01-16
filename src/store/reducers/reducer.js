@@ -103,6 +103,13 @@ const updateUser = (prevState, action) => {
     currentUser: action.payload
   };
 };
+
+const loadStudents = (prevState, action) => {
+  return {
+    ...prevState,
+    students: action.payload
+  };
+};
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -115,6 +122,8 @@ const reducer = (prevState = initialState, action) => {
       return updateUser(prevState, action);
     case "ALL_PLAYERS":
       return getAllPlayers(prevState, action);
+    case "LOAD_STUDENTS":
+      return loadStudents(prevState, action);
     case "GET_CONVERSATIONS":
       return getConversations(prevState, action);
     case "ALL_MESSAGES":

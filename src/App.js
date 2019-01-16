@@ -11,6 +11,7 @@ import CoachCalendars from "./containers/CoachCalendars";
 import MessagesPage from "./components/MessagesPage";
 import ProfilePage from "./components/ProfilePage";
 import Weather from "./components/Weather";
+import StudentsPage from "./components/StudentsPage";
 
 class App extends Component {
   state = {
@@ -18,7 +19,8 @@ class App extends Component {
     context: "",
     bookLessonsPage: false,
     messagesPage: false,
-    profilePage: false
+    profilePage: false,
+    studentsPage: false
   };
   handleLogIn = (context, user = null) => {
     this.setState({
@@ -60,7 +62,8 @@ class App extends Component {
       logIn: true,
       bookLessonsPage: false,
       messagesPage: false,
-      profilePage: false
+      profilePage: false,
+      studentsPage: false
     });
 
     this.props.handleLogOut();
@@ -70,7 +73,8 @@ class App extends Component {
     this.setState({
       bookLessonsPage: true,
       messagesPage: false,
-      profilePage: false
+      profilePage: false,
+      studentsPage: false
     });
   };
 
@@ -78,7 +82,8 @@ class App extends Component {
     this.setState({
       bookLessonsPage: false,
       messagesPage: true,
-      profilePage: false
+      profilePage: false,
+      studentsPage: false
     });
   };
 
@@ -86,7 +91,17 @@ class App extends Component {
     this.setState({
       bookLessonsPage: false,
       messagesPage: false,
-      profilePage: true
+      profilePage: true,
+      studentsPage: false
+    });
+  };
+
+  studentsPage = () => {
+    this.setState({
+      bookLessonsPage: false,
+      messagesPage: false,
+      profilePage: false,
+      studentsPage: true
     });
   };
 
@@ -102,6 +117,7 @@ class App extends Component {
           bookLessonsPage={this.bookLessonsPage}
           messagesPage={this.messagesPage}
           profilePage={this.profilePage}
+          studentsPage={this.studentsPage}
         />
         {this.state.logIn ? (
           <LogInForm
@@ -116,6 +132,7 @@ class App extends Component {
         ) : null}
         {this.state.messagesPage ? <MessagesPage /> : null}
         {this.state.profilePage ? <ProfilePage /> : null}
+        {this.state.studentsPage ? <StudentsPage /> : null}
       </React.Fragment>
     );
   }

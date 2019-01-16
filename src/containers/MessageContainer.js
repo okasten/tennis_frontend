@@ -47,6 +47,7 @@ class MessageContainer extends Component {
       reply: !this.state.reply,
       content: ""
     });
+    this.props.getMessages(this.props.user, this.props.convo);
   };
 
   render() {

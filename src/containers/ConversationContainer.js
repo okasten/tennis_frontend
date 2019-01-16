@@ -4,7 +4,7 @@ import * as actions from "../store/actions";
 import Conversation from "../components/Conversation";
 import NewConversationForm from "../components/NewConversationForm";
 import { Button } from "react-bootstrap";
-
+let count = 0;
 class ConversationContainer extends Component {
   state = {
     newConversation: false
@@ -17,7 +17,6 @@ class ConversationContainer extends Component {
     } else {
       type = "players";
     }
-
     this.props.loadConversations(type, this.props.user);
   }
 

@@ -7,11 +7,10 @@ import IndividualLesson from "../components/IndividualLesson";
 class TodayLessonsContainer extends Component {
   render() {
     let today = moment().format();
-    // let date = today.slice(0, 10);
-    // if (date[9] === "0") {
-    //   date[9] = "O";
-    // }
-    let date = "2019-01-O3";
+    let date = today.slice(0, 10);
+    if (date[9] === "0") {
+      date[9] = "O";
+    }
 
     let todaysLessons = [];
     let showTodaysLessons = [];
@@ -28,7 +27,7 @@ class TodayLessonsContainer extends Component {
     }
     return (
       <div>
-        Today's Lessons
+        <h3>Today's Lessons</h3> <br />
         {showTodaysLessons.length > 0 ? (
           <div>{showTodaysLessons}</div>
         ) : (

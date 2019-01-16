@@ -12,7 +12,8 @@ export {
   logIn,
   getCoaches,
   getPlayers,
-  updateUser
+  updateUser,
+  getStudents
 } from "./users";
 
 export {

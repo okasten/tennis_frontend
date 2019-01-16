@@ -24,7 +24,11 @@ class Header extends Component {
 
             {this.props.userType === "coach" ? (
               <React.Fragment>
-                <NavItem eventKey={1} href="#">
+                <NavItem
+                  eventKey={1}
+                  href="#"
+                  onClick={this.props.studentsPage}
+                >
                   Students
                 </NavItem>
                 <NavItem onClick={this.props.bookLessonsPage}>Calendar</NavItem>
