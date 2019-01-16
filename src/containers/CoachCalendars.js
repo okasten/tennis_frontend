@@ -12,6 +12,7 @@ import {
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
 import Weather from "../components/Weather";
+import TodayLessonsContainer from "./TodayLessonsContainer";
 
 class CoachCalendars extends Component {
   state = {
@@ -65,6 +66,7 @@ class CoachCalendars extends Component {
             </Switch>
           </HashRouter>
         </Calendar>
+        {userType === "coach" ? <TodayLessonsContainer /> : null}
       </React.Fragment>
     );
   }
