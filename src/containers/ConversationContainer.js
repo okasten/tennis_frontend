@@ -4,10 +4,13 @@ import * as actions from "../store/actions";
 import Conversation from "../components/Conversation";
 import NewConversationForm from "../components/NewConversationForm";
 import { Button } from "react-bootstrap";
+import MessageContainer from "./MessageContainer";
+
 let count = 0;
 class ConversationContainer extends Component {
   state = {
-    newConversation: false
+    newConversation: false,
+    currentConversation: ""
   };
   componentDidMount() {
     let userType = localStorage.getItem("type");
@@ -20,10 +23,30 @@ class ConversationContainer extends Component {
     this.props.loadConversations(type, this.props.user);
   }
 
+  // showMessages = convo => {
+  //   console.log(convo);
+  //   this.setState({
+  //     showMessages: !this.state.showMessages,
+  //     currentConversation: convo
+  //   });
+  // };
+  handleClick = convo => {
+    this.setState({
+      showMessages: true,
+      currentConversation: convo
+    });
+  };
+
   getConvos = () => {
     if (this.props.conversations) {
       let conversations = this.props.conversations.map(convo => {
-        return <Conversation convo={convo} />;
+        return (
+          <Conversation
+            key={convo.id}
+            convo={convo}
+            handleClick={this.handleClick}
+          />
+        );
       });
       return conversations;
     } else {
@@ -42,6 +65,10 @@ class ConversationContainer extends Component {
       <React.Fragment>
         <h1>Conversations</h1>
         {this.getConvos()}
+        {this.state.showMessages ? (
+          <MessageContainer convo={this.state.currentConversation} />
+        ) : null}
+        {console.log(this.state.currentConversation)}
         {this.state.newConversation ? (
           <NewConversationForm />
         ) : (

@@ -12,12 +12,15 @@ class MessageContainer extends Component {
   componentDidMount() {
     this.props.getMessages(this.props.user, this.props.convo);
   }
+  componentWillReceiveProps() {
+    this.props.getMessages(this.props.user, this.props.convo);
+  }
 
   showMessages = () => {
     let messages;
     if (this.props.messages) {
       messages = this.props.messages.map(message => {
-        return <Message message={message} />;
+        return <Message key={message.id} message={message} />;
       });
     }
     return messages;
@@ -47,7 +50,6 @@ class MessageContainer extends Component {
       reply: !this.state.reply,
       content: ""
     });
-    this.props.getMessages(this.props.user, this.props.convo);
   };
 
   render() {

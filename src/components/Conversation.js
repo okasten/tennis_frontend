@@ -12,16 +12,12 @@ class Conversation extends Component {
     });
   };
   render() {
-    console.log(this.props.convo);
     return (
       <React.Fragment>
-        <h3 onClick={this.handleMessages}>
+        <h3 onClick={() => this.props.handleClick(this.props.convo)}>
           {" "}
           {this.props.convo.player.name} and {this.props.convo.coach.name}{" "}
         </h3>
-        {this.state.showMessages ? (
-          <MessageContainer convo={this.props.convo} />
-        ) : null}
       </React.Fragment>
     );
   }
