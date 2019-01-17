@@ -12,6 +12,13 @@ const allMessages = messages => {
   };
 };
 
+const addMessage = message => {
+  return {
+    type: "ADD_MESSAGE",
+    payload: message
+  };
+};
+
 export const loadConversations = (type, user) => {
   return dispatch => {
     return fetch(
@@ -53,6 +60,16 @@ export const getMessages = (user, conversation) => {
   };
 };
 
+export const markMessagesRead = convo => {
+  return dispatch => {
+    return fetch(
+      `http://localhost:3000/api/v1/conversations/${convo.id}/markRead`
+    )
+      .then(r => r.json())
+      .then(console.log);
+  };
+};
+
 export const sendReply = (type, user, conversation, messageContent) => {
   console.log(conversation);
   return dispatch => {
@@ -71,6 +88,10 @@ export const sendReply = (type, user, conversation, messageContent) => {
           [type]: user
         })
       }
-    );
+    )
+      .then(r => r.json())
+      .then(message => {
+        dispatch(addMessage(message));
+      });
   };
 };

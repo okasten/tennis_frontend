@@ -20,7 +20,8 @@ export {
   loadConversations,
   sendMessage,
   getMessages,
-  sendReply
+  sendReply,
+  markMessagesRead
 } from "./conversations";
 
 export { getWeather } from "./weather";

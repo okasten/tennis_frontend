@@ -12,8 +12,15 @@ class MessageContainer extends Component {
   componentDidMount() {
     this.props.getMessages(this.props.user, this.props.convo);
   }
-  componentWillReceiveProps() {
-    this.props.getMessages(this.props.user, this.props.convo);
+  componentWillReceiveProps(nextProps) {
+    if (this.props.messages) {
+      if (
+        nextProps.convo !== this.props.convo ||
+        nextProps.messages.length !== this.props.messages.length
+      ) {
+        this.props.getMessages(nextProps.user, nextProps.convo);
+      }
+    }
   }
 
   showMessages = () => {

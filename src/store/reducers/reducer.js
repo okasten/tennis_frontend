@@ -89,6 +89,10 @@ const allMessages = (prevState, action) => {
   };
 };
 
+const addMessage = (prevState, action) => {
+  return { ...prevState, messages: [...prevState.messages, action.payload] };
+};
+
 const loadWeather = (prevState, action) => {
   console.log(action);
   return {
@@ -128,6 +132,8 @@ const reducer = (prevState = initialState, action) => {
       return getConversations(prevState, action);
     case "ALL_MESSAGES":
       return allMessages(prevState, action);
+    case "ADD_MESSAGE":
+      return addMessage(prevState, action);
     case "CLEAR_LESSONS":
       return clearLessons(prevState, action);
     case "CREATE_LESSON":

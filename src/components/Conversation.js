@@ -2,15 +2,6 @@ import React, { Component } from "react";
 import MessageContainer from "../containers/MessageContainer";
 
 class Conversation extends Component {
-  state = {
-    showMessages: false
-  };
-
-  handleMessages = () => {
-    this.setState({
-      showMessages: !this.state.showMessages
-    });
-  };
   render() {
     return (
       <React.Fragment>

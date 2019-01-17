@@ -22,6 +22,7 @@ class App extends Component {
     profilePage: false,
     studentsPage: false
   };
+
   handleLogIn = (context, user = null) => {
     this.setState({
       logIn: !this.state.logIn,
@@ -105,6 +106,15 @@ class App extends Component {
     });
   };
 
+  tournamentsPage = () => {
+    this.setState({
+      bookLessonsPage: false,
+      messagesPage: false,
+      profilePage: false,
+      studentsPage: false
+    });
+  };
+
   render() {
     let userType = localStorage.getItem("type");
     return (
@@ -119,6 +129,7 @@ class App extends Component {
           profilePage={this.profilePage}
           studentsPage={this.studentsPage}
         />
+
         {this.state.logIn ? (
           <LogInForm
             handleLogIn={this.handleLogIn}
@@ -151,7 +162,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 // export default withRouter(App);
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

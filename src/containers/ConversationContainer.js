@@ -23,18 +23,13 @@ class ConversationContainer extends Component {
     this.props.loadConversations(type, this.props.user);
   }
 
-  // showMessages = convo => {
-  //   console.log(convo);
-  //   this.setState({
-  //     showMessages: !this.state.showMessages,
-  //     currentConversation: convo
-  //   });
-  // };
   handleClick = convo => {
     this.setState({
       showMessages: true,
       currentConversation: convo
     });
+
+    this.props.markMessagesRead(convo);
   };
 
   getConvos = () => {
@@ -60,7 +55,6 @@ class ConversationContainer extends Component {
     });
   };
   render() {
-    console.log(this.props.conversations);
     return (
       <React.Fragment>
         <h1>Conversations</h1>
@@ -68,7 +62,7 @@ class ConversationContainer extends Component {
         {this.state.showMessages ? (
           <MessageContainer convo={this.state.currentConversation} />
         ) : null}
-        {console.log(this.state.currentConversation)}
+
         {this.state.newConversation ? (
           <NewConversationForm />
         ) : (
@@ -89,7 +83,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadConversations: (type, user) =>
-      dispatch(actions.loadConversations(type, user))
+      dispatch(actions.loadConversations(type, user)),
+    markMessagesRead: convo => dispatch(actions.markMessagesRead(convo))
   };
 };
 
