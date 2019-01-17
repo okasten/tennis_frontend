@@ -46,11 +46,11 @@ class GoalsContainer extends Component {
     let shortTerm;
     if (this.props.goals) {
       shortTerm = this.props.goals.filter(goal => {
-        return goal.kind === "Short-Term";
+        return goal.kind === "Short-Term" && !goal.met;
       });
     } else {
       shortTerm = this.props.user.goals.filter(goal => {
-        return goal.kind === "Short-Term";
+        return goal.kind === "Short-Term" && !goal.met;
       });
     }
     return shortTerm;
@@ -60,11 +60,11 @@ class GoalsContainer extends Component {
     let longTerm;
     if (this.props.goals) {
       longTerm = this.props.goals.filter(goal => {
-        return goal.kind === "Long-Term";
+        return goal.kind === "Long-Term" && !goal.met;
       });
     } else {
       longTerm = this.props.user.goals.filter(goal => {
-        return goal.kind === "Long-Term";
+        return goal.kind === "Long-Term" && !goal.met;
       });
     }
 
@@ -85,6 +85,27 @@ class GoalsContainer extends Component {
     return goals;
   };
 
+  metGoals = () => {
+    let metGoals;
+    if (this.props.goals) {
+      metGoals = this.props.goals.filter(goal => {
+        return goal.met;
+      });
+    } else {
+      metGoals = this.props.user.goals.filter(goal => {
+        return goal.met;
+      });
+    }
+    return metGoals;
+  };
+
+  listMetGoals = () => {
+    let goals = this.metGoals().map(goal => {
+      return <Goal key={goal.id} goal={goal} handleClick={this.handleClick} />;
+    });
+    return goals;
+  };
+
   deleteGoal = () => {
     this.setState({
       newGoal: false,
@@ -98,6 +119,8 @@ class GoalsContainer extends Component {
         {this.listShortGoals()}
         <h1> Long-Term #GOALS</h1>
         {this.listLongGoals()}
+        <h1>#GOALS CRUSHED</h1>
+        {this.listMetGoals()}
         <Button onClick={this.newGoal}>Create A New Goal</Button>
         {this.state.newGoal ? (
           <NewGoalForm handleClick={this.handleClick} setGoal={this.setGoal} />

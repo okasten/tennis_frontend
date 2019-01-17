@@ -45,6 +45,11 @@ class GoalInformation extends Component {
       this.props.handleShow();
     }
   };
+
+  meetGoal = () => {
+    this.props.meetGoal(this.props.goal);
+    this.props.handleShow();
+  };
   render() {
     return (
       <React.Fragment>
@@ -55,6 +60,7 @@ class GoalInformation extends Component {
             <h4>{this.state.goal.notes}</h4>
 
             <Button onClick={this.handleClick}>Edit Goal</Button>
+            <Button onClick={this.meetGoal}>Meet Goal</Button>
             <Button onClick={this.deleteGoal}>Delete Goal</Button>
           </React.Fragment>
         ) : (
@@ -84,7 +90,8 @@ class GoalInformation extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     updateGoal: (goal, update) => dispatch(actions.updateGoal(goal, update)),
-    deleteGoal: goal => dispatch(actions.deleteGoal(goal))
+    deleteGoal: goal => dispatch(actions.deleteGoal(goal)),
+    meetGoal: goal => dispatch(actions.meetGoal(goal))
   };
 };
 

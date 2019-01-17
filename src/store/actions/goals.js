@@ -54,3 +54,17 @@ export const deleteGoal = goal => {
     }).then(dispatch(destroyGoal(goal)));
   };
 };
+
+export const meetGoal = goal => {
+  return function thunk(dispatch) {
+    return fetch(`http://localhost:3000/api/v1/goals/${goal.id}/meet`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(goal)
+    })
+      .then(r => r.json())
+      .then(goal => dispatch(editGoal(goal)));
+  };
+};
