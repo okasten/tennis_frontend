@@ -138,6 +138,19 @@ const editGoal = (prevState, action) => {
   };
 };
 
+const deleteGoal = (prevState, action) => {
+  let newArray = [...prevState.currentUser.goals].filter(goal => {
+    if (goal.id !== action.payload.id) {
+      return goal;
+    }
+  });
+
+  return {
+    ...prevState,
+    goals: newArray
+  };
+};
+
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -174,6 +187,8 @@ const reducer = (prevState = initialState, action) => {
       return newGoal(prevState, action);
     case "EDIT_GOAL":
       return editGoal(prevState, action);
+    case "DELETE_GOAL":
+      return deleteGoal(prevState, action);
     default:
       return prevState;
   }

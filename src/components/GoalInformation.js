@@ -37,6 +37,14 @@ class GoalInformation extends Component {
       editGoal: false
     });
   };
+
+  deleteGoal = () => {
+    if (window.confirm("Are you sure you want to delete this goal?")) {
+      this.props.deleteGoal(this.props.goal);
+
+      this.props.handleShow();
+    }
+  };
   render() {
     return (
       <React.Fragment>
@@ -47,6 +55,7 @@ class GoalInformation extends Component {
             <h4>{this.state.goal.notes}</h4>
 
             <Button onClick={this.handleClick}>Edit Goal</Button>
+            <Button onClick={this.deleteGoal}>Delete Goal</Button>
           </React.Fragment>
         ) : (
           <form>
@@ -74,7 +83,8 @@ class GoalInformation extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateGoal: (goal, update) => dispatch(actions.updateGoal(goal, update))
+    updateGoal: (goal, update) => dispatch(actions.updateGoal(goal, update)),
+    deleteGoal: goal => dispatch(actions.deleteGoal(goal))
   };
 };
 

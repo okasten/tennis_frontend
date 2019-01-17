@@ -84,6 +84,13 @@ class GoalsContainer extends Component {
     });
     return goals;
   };
+
+  deleteGoal = () => {
+    this.setState({
+      newGoal: false,
+      showGoal: false
+    });
+  };
   render() {
     return (
       <React.Fragment>
@@ -96,7 +103,10 @@ class GoalsContainer extends Component {
           <NewGoalForm handleClick={this.handleClick} setGoal={this.setGoal} />
         ) : null}
         {this.state.showGoal ? (
-          <GoalInformation goal={this.state.currentGoal} />
+          <GoalInformation
+            goal={this.state.currentGoal}
+            handleShow={this.deleteGoal}
+          />
         ) : null}
       </React.Fragment>
     );

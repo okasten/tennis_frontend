@@ -27,4 +27,4 @@ export {
 
 export { getWeather } from "./weather";
 
-export { addGoal, updateGoal } from "./goals";
+export { addGoal, updateGoal, deleteGoal } from "./goals";
