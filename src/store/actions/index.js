@@ -26,3 +26,5 @@ export {
 } from "./conversations";
 
 export { getWeather } from "./weather";
+
+export { addGoal, updateGoal } from "./goals";

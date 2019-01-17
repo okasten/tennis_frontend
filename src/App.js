@@ -9,6 +9,7 @@ import CoachCalendars from "./containers/CoachCalendars";
 import MessagesPage from "./components/MessagesPage";
 import ProfilePage from "./components/ProfilePage";
 import StudentsPage from "./components/StudentsPage";
+import GoalsContainer from "./containers/GoalsContainer";
 
 class App extends Component {
   state = {
@@ -17,7 +18,8 @@ class App extends Component {
     bookLessonsPage: false,
     messagesPage: false,
     profilePage: false,
-    studentsPage: false
+    studentsPage: false,
+    goalsPage: false
   };
 
   handleLogIn = (context, user = null) => {
@@ -48,7 +50,9 @@ class App extends Component {
             messagesPage: false
           });
           this.props.logIn(res.user);
-          this.props.getUnreadMessages(res.user, type);
+          if (this.props.user) {
+            this.props.getUnreadMessages(res.user, type);
+          }
         });
     }
   }
@@ -104,12 +108,13 @@ class App extends Component {
     });
   };
 
-  tournamentsPage = () => {
+  goalsPage = () => {
     this.setState({
       bookLessonsPage: false,
       messagesPage: false,
       profilePage: false,
-      studentsPage: false
+      studentsPage: false,
+      goalsPage: true
     });
   };
 
@@ -127,6 +132,7 @@ class App extends Component {
           profilePage={this.profilePage}
           studentsPage={this.studentsPage}
           unreadMessages={this.props.numberUnread}
+          goalsPage={this.goalsPage}
         />
 
         {this.state.logIn ? (
@@ -143,6 +149,7 @@ class App extends Component {
         {this.state.messagesPage ? <MessagesPage /> : null}
         {this.state.profilePage ? <ProfilePage /> : null}
         {this.state.studentsPage ? <StudentsPage /> : null}
+        {this.state.goalsPage ? <GoalsContainer /> : null}
       </React.Fragment>
     );
   }

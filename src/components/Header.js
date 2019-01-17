@@ -42,6 +42,7 @@ class Header extends Component {
               </React.Fragment>
             ) : (
               <React.Fragment>
+                <NavItem onClick={this.props.goalsPage}>Goals</NavItem>
                 <NavItem
                   eventKey={1}
                   onClick={this.props.bookLessonsPage}

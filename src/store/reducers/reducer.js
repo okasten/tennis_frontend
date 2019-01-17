@@ -116,6 +116,28 @@ const loadStudents = (prevState, action) => {
     students: action.payload
   };
 };
+
+const newGoal = (prevState, action) => {
+  return {
+    ...prevState,
+    goals: [...prevState.currentUser.goals, action.payload]
+  };
+};
+
+const editGoal = (prevState, action) => {
+  let newArray = [...prevState.currentUser.goals].map(goal => {
+    if (goal.id === action.payload.id) {
+      return (goal = action.payload);
+    } else {
+      return goal;
+    }
+  });
+  return {
+    ...prevState,
+    goals: newArray
+  };
+};
+
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -148,6 +170,10 @@ const reducer = (prevState = initialState, action) => {
       return deleteLesson(prevState, action);
     case "LOAD_WEATHER":
       return loadWeather(prevState, action);
+    case "NEW_GOAL":
+      return newGoal(prevState, action);
+    case "EDIT_GOAL":
+      return editGoal(prevState, action);
     default:
       return prevState;
   }
