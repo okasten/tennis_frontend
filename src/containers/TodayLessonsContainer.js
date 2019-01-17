@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../store/actions";
 import moment from "moment";
 import IndividualLesson from "../components/IndividualLesson";
 

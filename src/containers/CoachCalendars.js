@@ -2,13 +2,6 @@ import React, { Component } from "react";
 import Calendar from "../hoc/Calendar/index";
 import Month from "./Month";
 import { withRouter, Route, Switch, HashRouter } from "react-router-dom";
-import {
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  ListGroup,
-  ListGroupItem
-} from "react-bootstrap";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
 import Weather from "../components/Weather";
@@ -21,13 +14,8 @@ class CoachCalendars extends Component {
   };
 
   componentDidMount() {
-    console.log("GET COACHES");
     this.props.getCoaches();
   }
-
-  geoSuccess = position => {
-    let location;
-  };
 
   chooseCoach = e => {
     this.props.loadLessons(e.target.value);
@@ -39,7 +27,11 @@ class CoachCalendars extends Component {
 
     if (this.props.coaches) {
       coaches = this.props.coaches.map(coach => {
-        return <option value={coach.id}>{coach.name}</option>;
+        return (
+          <option key={coach.id} value={coach.id}>
+            {coach.name}
+          </option>
+        );
       });
     }
 

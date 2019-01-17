@@ -17,7 +17,7 @@ class ProfilePage extends Component {
     return (
       <React.Fragment>
         <h1>{this.props.user.name}'s Profile</h1>
-        <img src={this.props.user.picture} />
+        <img src={this.props.user.picture} alt="profile" />
         <h4>Username: {this.props.user.username}</h4>
         <h4>Email: {this.props.user.email}</h4>
         {localStorage.getItem("type") === "player" ? (

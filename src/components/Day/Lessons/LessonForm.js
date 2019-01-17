@@ -5,7 +5,6 @@ import ColorPicker from "rc-color-picker";
 import "rc-time-picker/assets/index.css";
 import "rc-color-picker/assets/index.css";
 import "./lessonForm.scss";
-import { FormGroup, FormControl } from "react-bootstrap";
 
 const lessonForm = props => {
   const time = props.lesson.time

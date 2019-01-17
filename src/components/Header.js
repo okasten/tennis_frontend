@@ -1,7 +1,13 @@
 import React, { Component } from "react";
-import { Navbar, MenuItem, Nav, NavItem, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  MenuItem,
+  Nav,
+  NavItem,
+  NavDropdown,
+  Badge
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CoachCalendars from "../containers/CoachCalendars";
 
 class Header extends Component {
   render() {
@@ -43,7 +49,9 @@ class Header extends Component {
                 >
                   Book A Lesson
                 </NavItem>
-                <NavItem onClick={this.props.messagesPage}>Messages</NavItem>
+                <NavItem onClick={this.props.messagesPage}>
+                  Messages<Badge>{this.props.unreadMessages}</Badge>
+                </NavItem>
               </React.Fragment>
             )}
             <NavItem eventKey={2} href="#" onClick={this.props.profilePage}>

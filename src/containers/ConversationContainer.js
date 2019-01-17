@@ -6,7 +6,6 @@ import NewConversationForm from "../components/NewConversationForm";
 import { Button } from "react-bootstrap";
 import MessageContainer from "./MessageContainer";
 
-let count = 0;
 class ConversationContainer extends Component {
   state = {
     newConversation: false,

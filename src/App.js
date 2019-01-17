@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import Calendar from "./hoc/Calendar/index";
-import Month from "./containers/Month";
 import { withRouter, Route, Switch, HashRouter } from "react-router-dom";
 import Header from "./components/Header";
 import { connect } from "react-redux";
 import LogInForm from "./components/LogInForm";
-import { logOutUser, logIn } from "./store/actions";
+import * as actions from "./store/actions";
 import CoachCalendars from "./containers/CoachCalendars";
 import MessagesPage from "./components/MessagesPage";
 import ProfilePage from "./components/ProfilePage";
-import Weather from "./components/Weather";
 import StudentsPage from "./components/StudentsPage";
 
 class App extends Component {
@@ -51,6 +48,7 @@ class App extends Component {
             messagesPage: false
           });
           this.props.logIn(res.user);
+          this.props.getUnreadMessages(res.user, type);
         });
     }
   }
@@ -128,6 +126,7 @@ class App extends Component {
           messagesPage={this.messagesPage}
           profilePage={this.profilePage}
           studentsPage={this.studentsPage}
+          unreadMessages={this.props.numberUnread}
         />
 
         {this.state.logIn ? (
@@ -151,14 +150,17 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.currentUser
+    user: state.currentUser,
+    numberUnread: state.numberUnread
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    logIn: user => dispatch(logIn(user)),
-    handleLogOut: () => dispatch(logOutUser())
+    logIn: user => dispatch(actions.logIn(user)),
+    handleLogOut: () => dispatch(actions.logOutUser()),
+    getUnreadMessages: (user, type) =>
+      dispatch(actions.getUnreadMessages(user, type))
   };
 };
 // export default withRouter(App);

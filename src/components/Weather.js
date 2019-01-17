@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import {
-  WiCloudUp,
-  WiCloudy,
   WiSnowflakeCold,
   WiDaySunnyOvercast,
   WiDaySunny,
@@ -49,8 +47,6 @@ class Weather extends Component {
     count = count + 1;
   };
   render() {
-    console.log(this.props.weather);
-    console.log(count);
     this.increaseCount();
     return (
       <React.Fragment>

@@ -1,5 +1,3 @@
-import uniqueId from "uuid/v1";
-
 const initialState = { currentUser: null };
 
 const logInUser = (prevState, action) => {
@@ -93,6 +91,10 @@ const addMessage = (prevState, action) => {
   return { ...prevState, messages: [...prevState.messages, action.payload] };
 };
 
+const numberUnread = (prevState, action) => {
+  return { ...prevState, numberUnread: action.payload };
+};
+
 const loadWeather = (prevState, action) => {
   console.log(action);
   return {
@@ -134,6 +136,8 @@ const reducer = (prevState = initialState, action) => {
       return allMessages(prevState, action);
     case "ADD_MESSAGE":
       return addMessage(prevState, action);
+    case "NUMBER_UNREAD":
+      return numberUnread(prevState, action);
     case "CLEAR_LESSONS":
       return clearLessons(prevState, action);
     case "CREATE_LESSON":

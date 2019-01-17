@@ -19,6 +19,13 @@ const addMessage = message => {
   };
 };
 
+const numberUnread = number => {
+  return {
+    type: "NUMBER_UNREAD",
+    payload: number
+  };
+};
+
 export const loadConversations = (type, user) => {
   return dispatch => {
     return fetch(
@@ -67,6 +74,20 @@ export const markMessagesRead = convo => {
     )
       .then(r => r.json())
       .then(console.log);
+  };
+};
+
+export const getUnreadMessages = (user, type) => {
+  return dispatch => {
+    return fetch(
+      `http://localhost:3000/api/v1/conversations/unreadmessages/${
+        user.id
+      }/${type}`
+    )
+      .then(r => r.json())
+      .then(number => {
+        dispatch(numberUnread(number));
+      });
   };
 };
 

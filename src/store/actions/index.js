@@ -21,7 +21,8 @@ export {
   sendMessage,
   getMessages,
   sendReply,
-  markMessagesRead
+  markMessagesRead,
+  getUnreadMessages
 } from "./conversations";
 
 export { getWeather } from "./weather";
