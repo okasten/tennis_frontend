@@ -15,7 +15,6 @@ class GoalInformation extends Component {
   shouldComponentUpdate(nextProps) {
     if (this.props.theGoal) {
       if (nextProps.theGoal !== this.props.theGoal || !this.state.editGoal) {
-        // this.props.getGoal(this.props.goal);
         return true;
       } else {
         return false;
@@ -23,23 +22,21 @@ class GoalInformation extends Component {
     }
   }
   goalCreatedAt = () => {
-    if (this.props.theGoal.status) {
-      let date = this.props.goal.created_at;
-      date = date.slice(0, 10);
-      return date;
-    } else {
-      let date = this.props.theGoal.created_at;
-      date = date.slice(0, 10);
-      return date;
-    }
+    let date = this.props.goal.created_at;
+    date = date.slice(0, 10);
+    return date;
+  };
+
+  goalMetAt = () => {
+    let date = this.props.goal.updated_at;
+    date = date.slice(0, 10);
+    return date;
   };
 
   handleClick = () => {
     this.setState({
       editGoal: !this.state.editGoal
     });
-
-    // this.props.getGoal(this.props.goal);
   };
 
   handleEdit = goal => {
@@ -64,20 +61,22 @@ class GoalInformation extends Component {
   };
 
   render() {
-    console.log("PROPS THEGOAL", this.props.theGoal);
-    console.log("PROPS GOAL", this.props.goal);
-
     return (
       <React.Fragment>
         {!this.state.editGoal ? (
           <React.Fragment>
-            <h3>{this.props.goal.objective}</h3>
-            <h4>Date Set: {this.goalCreatedAt()}</h4>
-            {this.props.theGoal.status ? (
-              <h4>{this.props.goal.notes}</h4>
-            ) : (
-              <h4>{this.props.theGoal.notes}</h4>
-            )}
+            <h3>Goal: </h3>
+            <h4>{this.props.goal.objective}</h4>
+            <h4>Date Set: </h4>
+            <h5>{this.goalCreatedAt()}</h5>
+            {this.props.goal.met ? (
+              <React.Fragment>
+                <h4>Date Met: </h4>
+                <h5>{this.goalMetAt()}</h5>
+              </React.Fragment>
+            ) : null}
+            <h4>Notes: </h4>
+            <h5>{this.props.goal.notes}</h5>
 
             {!this.props.goal.met ? (
               <React.Fragment>
@@ -88,7 +87,11 @@ class GoalInformation extends Component {
             <Button onClick={this.deleteGoal}>Delete Goal</Button>
           </React.Fragment>
         ) : (
-          <EditGoalForm goal={this.props.goal} handleEdit={this.handleEdit} />
+          <EditGoalForm
+            goal={this.props.goal}
+            handleEdit={this.handleEdit}
+            handleClose={this.handleClick}
+          />
         )}
       </React.Fragment>
     );

@@ -16,10 +16,6 @@ class EditGoalForm extends Component {
 
   handleUpdate = () => {
     this.props.updateGoal(this.props.goal, this.state.goal);
-    //
-    // this.setState({
-    //   editGoal: false
-    // });
     this.props.handleEdit(this.state.goal);
   };
 
@@ -49,6 +45,7 @@ class EditGoalForm extends Component {
           placeholder={this.props.goal.notes}
         />
         <Button onClick={this.handleUpdate}>Update Goal</Button>
+        <Button onClick={this.props.handleEdit}>Cancel</Button>
       </form>
     );
   }

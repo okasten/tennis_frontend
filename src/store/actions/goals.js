@@ -84,7 +84,6 @@ export const meetGoal = goal => {
 };
 
 export const getGoal = goal => {
-  console.log("IN ACTION", goal);
   return function thunk(dispatch) {
     return fetch(`http://localhost:3000/api/v1/goals/${goal.id}`)
       .then(r => r.json())
