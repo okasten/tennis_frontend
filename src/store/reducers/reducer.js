@@ -134,7 +134,8 @@ const editGoal = (prevState, action) => {
   });
   return {
     ...prevState,
-    goals: newArray
+    goals: newArray,
+    goal: action.payload
   };
 };
 
@@ -155,6 +156,9 @@ const getGoal = (prevState, action) => {
   return { ...prevState, goal: action.payload };
 };
 
+const getGoals = (prevState, action) => {
+  return { ...prevState, goals: action.payload };
+};
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -195,6 +199,8 @@ const reducer = (prevState = initialState, action) => {
       return deleteGoal(prevState, action);
     case "GET_GOAL":
       return getGoal(prevState, action);
+    case "GET_GOALS":
+      return getGoals(prevState, action);
     default:
       return prevState;
   }

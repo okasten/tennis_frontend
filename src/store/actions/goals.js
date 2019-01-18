@@ -26,6 +26,13 @@ export const gettingGoal = goal => {
   };
 };
 
+const getGoals = goals => {
+  return {
+    type: "GET_GOALS",
+    payload: goals
+  };
+};
+
 export const addGoal = (user, goal) => {
   return function thunk(dispatch) {
     return fetch(`http://localhost:3000/api/v1/players/${user.id}/goals`, {
@@ -77,9 +84,18 @@ export const meetGoal = goal => {
 };
 
 export const getGoal = goal => {
+  console.log("IN ACTION", goal);
   return function thunk(dispatch) {
     return fetch(`http://localhost:3000/api/v1/goals/${goal.id}`)
       .then(r => r.json())
       .then(goal => dispatch(gettingGoal(goal)));
+  };
+};
+
+export const loadGoals = user => {
+  return function thunk(dispatch) {
+    return fetch(`http://localhost:3000/api/v1/usergoals/${user.id}`)
+      .then(r => r.json())
+      .then(goals => dispatch(getGoals(goals)));
   };
 };

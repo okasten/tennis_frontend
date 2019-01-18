@@ -66,7 +66,8 @@ class App extends Component {
       bookLessonsPage: false,
       messagesPage: false,
       profilePage: false,
-      studentsPage: false
+      studentsPage: false,
+      goalsPage: false
     });
 
     this.props.handleLogOut();
@@ -77,7 +78,8 @@ class App extends Component {
       bookLessonsPage: true,
       messagesPage: false,
       profilePage: false,
-      studentsPage: false
+      studentsPage: false,
+      goalsPage: false
     });
   };
 
@@ -86,7 +88,8 @@ class App extends Component {
       bookLessonsPage: false,
       messagesPage: true,
       profilePage: false,
-      studentsPage: false
+      studentsPage: false,
+      goalsPage: false
     });
   };
 
@@ -95,7 +98,8 @@ class App extends Component {
       bookLessonsPage: false,
       messagesPage: false,
       profilePage: true,
-      studentsPage: false
+      studentsPage: false,
+      goalsPage: false
     });
   };
 
@@ -104,7 +108,8 @@ class App extends Component {
       bookLessonsPage: false,
       messagesPage: false,
       profilePage: false,
-      studentsPage: true
+      studentsPage: true,
+      goalsPage: false
     });
   };
 

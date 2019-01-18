@@ -11,11 +11,16 @@ let longTerm;
 class GoalsContainer extends Component {
   state = {
     newGoal: false,
-    showGoal: false
+    showGoal: false,
+    currentGoal: ""
   };
 
+  componentDidMount() {
+    this.props.loadGoals(this.props.user);
+    this.props.getGoal(this.state.currentGoal);
+  }
+
   shouldComponentUpdate(nextProps) {
-    // debugger;
     if (
       nextProps !== this.props ||
       !this.state.newGoal ||
@@ -39,6 +44,8 @@ class GoalsContainer extends Component {
     this.setState({
       newGoal: !this.state.newGoal
     });
+    this.props.getGoal(goal);
+    this.handleClick(goal);
   };
 
   handleClick = goal => {
@@ -46,6 +53,8 @@ class GoalsContainer extends Component {
       showGoal: true,
       currentGoal: goal
     });
+
+    this.props.getGoal(goal);
   };
 
   shortGoals = () => {
@@ -83,7 +92,7 @@ class GoalsContainer extends Component {
         <Goal
           key={goal.id}
           goal={goal}
-          handleClick={goal => this.handleClick(goal)}
+          handleClick={() => this.handleClick(goal)}
         />
       );
     });
@@ -149,7 +158,7 @@ class GoalsContainer extends Component {
         {this.state.newGoal ? <NewGoalForm setGoal={this.setGoal} /> : null}
         {this.state.showGoal ? (
           <GoalInformation
-            goal={this.state.currentGoal}
+            goal={this.props.theGoal}
             handleShow={this.deleteGoal}
           />
         ) : null}
@@ -161,13 +170,16 @@ class GoalsContainer extends Component {
 const mapStateToProps = state => {
   return {
     user: state.currentUser,
-    goals: state.goals
+    goals: state.goals,
+    theGoal: state.goal
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addGoal: (user, goal) => dispatch(actions.addGoal(user, goal))
+    addGoal: (user, goal) => dispatch(actions.addGoal(user, goal)),
+    loadGoals: user => dispatch(actions.loadGoals(user)),
+    getGoal: goal => dispatch(actions.gettingGoal(goal))
   };
 };
 
