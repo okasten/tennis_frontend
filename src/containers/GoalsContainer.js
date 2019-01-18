@@ -15,7 +15,13 @@ class GoalsContainer extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    if (nextProps !== this.props || !this.state.newGoal || this.state.newGoal) {
+    // debugger;
+    if (
+      nextProps !== this.props ||
+      !this.state.newGoal ||
+      this.state.newGoal ||
+      this.state.showGoal
+    ) {
       return true;
     } else {
       return false;
@@ -73,14 +79,26 @@ class GoalsContainer extends Component {
 
   listShortGoals = () => {
     let goals = this.shortGoals().map(goal => {
-      return <Goal key={goal.id} goal={goal} handleClick={this.handleClick} />;
+      return (
+        <Goal
+          key={goal.id}
+          goal={goal}
+          handleClick={goal => this.handleClick(goal)}
+        />
+      );
     });
     return goals;
   };
 
   listLongGoals = () => {
     let goals = this.longGoals().map(goal => {
-      return <Goal key={goal.id} goal={goal} handleClick={this.handleClick} />;
+      return (
+        <Goal
+          key={goal.id}
+          goal={goal}
+          handleClick={goal => this.handleClick(goal)}
+        />
+      );
     });
     return goals;
   };
@@ -101,7 +119,13 @@ class GoalsContainer extends Component {
 
   listMetGoals = () => {
     let goals = this.metGoals().map(goal => {
-      return <Goal key={goal.id} goal={goal} handleClick={this.handleClick} />;
+      return (
+        <Goal
+          key={goal.id}
+          goal={goal}
+          handleClick={goal => this.handleClick(goal)}
+        />
+      );
     });
     return goals;
   };
@@ -122,9 +146,7 @@ class GoalsContainer extends Component {
         <h1>#GOALS CRUSHED</h1>
         {this.listMetGoals()}
         <Button onClick={this.newGoal}>Create A New Goal</Button>
-        {this.state.newGoal ? (
-          <NewGoalForm handleClick={this.handleClick} setGoal={this.setGoal} />
-        ) : null}
+        {this.state.newGoal ? <NewGoalForm setGoal={this.setGoal} /> : null}
         {this.state.showGoal ? (
           <GoalInformation
             goal={this.state.currentGoal}
