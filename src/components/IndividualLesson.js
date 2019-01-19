@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
+import AddNotesForm from "./AddNotesForm";
 
 class IndividualLesson extends Component {
   state = {
@@ -15,11 +16,15 @@ class IndividualLesson extends Component {
 
   editLesson = () => {
     console.log("edit me");
+    this.setState({
+      showNotes: false,
+      editLesson: !this.state.editLesson
+    });
   };
 
   lessonNotes = () => {
-    if (this.props.lesson.description) {
-      return this.props.lesson.description;
+    if (this.props.lesson.notes || this.props.lesson.description) {
+      return this.props.lesson.notes || this.props.lesson.description;
     } else {
       return "No notes to show!";
     }
@@ -28,8 +33,14 @@ class IndividualLesson extends Component {
     return (
       <React.Fragment>
         <h3 onClick={this.showNotes}>
-          {this.props.lesson.player.name} at {this.props.lesson.time}
+          {localStorage.getItem("type") === "coach"
+            ? this.props.lesson.player.name
+            : this.props.lesson.coach.name}{" "}
+          on {this.props.lesson.date}
         </h3>
+        {this.state.editLesson ? (
+          <AddNotesForm lesson={this.props.lesson} />
+        ) : null}
         {this.state.showNotes ? (
           <h5>
             {this.lessonNotes()}

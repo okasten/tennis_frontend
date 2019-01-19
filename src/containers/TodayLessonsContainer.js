@@ -10,7 +10,7 @@ class TodayLessonsContainer extends Component {
     if (date[9] === "0") {
       date[9] = "O";
     }
-
+    // let date = "2019-01-O4";
     let todaysLessons = [];
     let showTodaysLessons = [];
     if (this.props.lessons[date]) {
