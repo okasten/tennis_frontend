@@ -10,6 +10,7 @@ import MessagesPage from "./components/MessagesPage";
 import ProfilePage from "./components/ProfilePage";
 import StudentsPage from "./components/StudentsPage";
 import GoalsContainer from "./containers/GoalsContainer";
+import LessonsContainer from "./containers/LessonsContainer";
 
 class App extends Component {
   state = {
@@ -67,7 +68,8 @@ class App extends Component {
       messagesPage: false,
       profilePage: false,
       studentsPage: false,
-      goalsPage: false
+      goalsPage: false,
+      lessonsPage: false
     });
 
     this.props.handleLogOut();
@@ -79,7 +81,8 @@ class App extends Component {
       messagesPage: false,
       profilePage: false,
       studentsPage: false,
-      goalsPage: false
+      goalsPage: false,
+      lessonsPage: false
     });
   };
 
@@ -89,7 +92,8 @@ class App extends Component {
       messagesPage: true,
       profilePage: false,
       studentsPage: false,
-      goalsPage: false
+      goalsPage: false,
+      lessonsPage: false
     });
   };
 
@@ -99,7 +103,8 @@ class App extends Component {
       messagesPage: false,
       profilePage: true,
       studentsPage: false,
-      goalsPage: false
+      goalsPage: false,
+      lessonsPage: false
     });
   };
 
@@ -109,7 +114,8 @@ class App extends Component {
       messagesPage: false,
       profilePage: false,
       studentsPage: true,
-      goalsPage: false
+      goalsPage: false,
+      lessonsPage: false
     });
   };
 
@@ -119,7 +125,19 @@ class App extends Component {
       messagesPage: false,
       profilePage: false,
       studentsPage: false,
-      goalsPage: true
+      goalsPage: true,
+      lessonsPage: false
+    });
+  };
+
+  lessonsPage = () => {
+    this.setState({
+      bookLessonsPage: false,
+      messagesPage: false,
+      profilePage: false,
+      studentsPage: false,
+      goalsPage: false,
+      lessonsPage: true
     });
   };
 
@@ -138,6 +156,7 @@ class App extends Component {
           studentsPage={this.studentsPage}
           unreadMessages={this.props.numberUnread}
           goalsPage={this.goalsPage}
+          lessonsPage={this.lessonsPage}
         />
 
         {this.state.logIn ? (
@@ -155,6 +174,7 @@ class App extends Component {
         {this.state.profilePage ? <ProfilePage /> : null}
         {this.state.studentsPage ? <StudentsPage /> : null}
         {this.state.goalsPage ? <GoalsContainer /> : null}
+        {this.state.lessonsPage ? <LessonsContainer /> : null}
       </React.Fragment>
     );
   }

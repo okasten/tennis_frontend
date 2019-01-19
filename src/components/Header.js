@@ -27,6 +27,7 @@ class Header extends Component {
               <MenuItem divider />
               <MenuItem eventKey={3.4}>Separated link</MenuItem>
             </NavDropdown>
+            <NavItem onClick={this.props.lessonsPage}>Lessons</NavItem>
 
             {this.props.userType === "coach" ? (
               <React.Fragment>

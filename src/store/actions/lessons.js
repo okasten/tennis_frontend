@@ -26,6 +26,13 @@ const deleteLessonAction = (id, date) => {
   };
 };
 
+const getLessons = lessons => {
+  return {
+    type: "GET_LESSONS",
+    payload: lessons
+  };
+};
+
 export const createLesson = lesson => {
   console.log(lesson);
   return function thunk(dispatch) {
@@ -109,5 +116,13 @@ export const deleteLesson = (user, lesson_id, date) => {
         // .then(r => r.json())
         .then(dispatch(deleteLessonAction(lesson_id, date)))
     );
+  };
+};
+
+export const loadUserLessons = (type, user) => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/${type}/${user.id}/lessons`)
+      .then(r => r.json())
+      .then(lessons => dispatch(getLessons(lessons)));
   };
 };

@@ -2,7 +2,8 @@ export {
   createLesson,
   updateLesson,
   deleteLesson,
-  loadLessons
+  loadLessons,
+  loadUserLessons
 } from "./lessons";
 
 export {

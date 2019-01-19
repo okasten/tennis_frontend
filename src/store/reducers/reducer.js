@@ -73,6 +73,13 @@ const clearLessons = (prevState, action) => {
   };
 };
 
+const getLessons = (prevState, action) => {
+  return {
+    ...prevState,
+    lessons: action.payload
+  };
+};
+
 const getConversations = (prevState, action) => {
   return {
     ...prevState,
@@ -189,6 +196,8 @@ const reducer = (prevState = initialState, action) => {
       return updateLesson(prevState, action);
     case "DELETE_LESSON":
       return deleteLesson(prevState, action);
+    case "GET_LESSONS":
+      return getLessons(prevState, action);
     case "LOAD_WEATHER":
       return loadWeather(prevState, action);
     case "NEW_GOAL":
