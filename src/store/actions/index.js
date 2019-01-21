@@ -3,7 +3,8 @@ export {
   updateLesson,
   deleteLesson,
   loadLessons,
-  loadUserLessons
+  loadUserLessons,
+  addNotes
 } from "./lessons";
 
 export {

@@ -57,6 +57,19 @@ const updateLesson = (prevState, action) => {
   };
 };
 
+const addNotes = (prevState, action) => {
+  let lessons = [...prevState.lessons].map(lesson => {
+    if (lesson.id === action.payload.id) {
+      lesson = action.payload;
+      return lesson;
+    } else {
+      return lesson;
+    }
+  });
+
+  return { ...prevState, lessons: lessons };
+};
+
 const deleteLesson = (prevState, action) => {
   return {
     ...prevState,
@@ -166,6 +179,7 @@ const getGoal = (prevState, action) => {
 const getGoals = (prevState, action) => {
   return { ...prevState, goals: action.payload };
 };
+
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
@@ -196,6 +210,8 @@ const reducer = (prevState = initialState, action) => {
       return updateLesson(prevState, action);
     case "DELETE_LESSON":
       return deleteLesson(prevState, action);
+    case "ADD_NOTES":
+      return addNotes(prevState, action);
     case "GET_LESSONS":
       return getLessons(prevState, action);
     case "LOAD_WEATHER":

@@ -33,6 +33,13 @@ const getLessons = lessons => {
   };
 };
 
+const addNotesAction = lesson => {
+  return {
+    type: "ADD_NOTES",
+    payload: lesson
+  };
+};
+
 export const createLesson = lesson => {
   console.log(lesson);
   return function thunk(dispatch) {
@@ -124,5 +131,19 @@ export const loadUserLessons = (type, user) => {
     return fetch(`http://localhost:3000/api/v1/${type}/${user.id}/lessons`)
       .then(r => r.json())
       .then(lessons => dispatch(getLessons(lessons)));
+  };
+};
+
+export const addNotes = (lesson_id, notes) => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/lessons/${lesson_id}/addNotes`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(notes)
+    })
+      .then(r => r.json())
+      .then(lesson => dispatch(addNotesAction(lesson)));
   };
 };

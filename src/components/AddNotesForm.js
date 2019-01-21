@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "react-bootstrap";
+import * as actions from "../store/actions";
 
 class AddNotesForm extends Component {
   state = {
@@ -15,6 +16,8 @@ class AddNotesForm extends Component {
 
   updateLesson = () => {
     console.log(this.state);
+    this.props.addNotes(this.props.lesson.id, this.state);
+    this.props.closeEdit();
   };
   render() {
     return (
@@ -30,4 +33,13 @@ class AddNotesForm extends Component {
   }
 }
 
-export default AddNotesForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    addNotes: (lesson_id, notes) => dispatch(actions.addNotes(lesson_id, notes))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddNotesForm);
