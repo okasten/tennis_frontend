@@ -97,6 +97,7 @@ class NewConversationForm extends Component {
           />
         </FormGroup>
         <Button onClick={this.handleSendMessage}>Send</Button>
+        <Button onClick={this.props.handleCancel}>Cancel</Button>
       </Form>
     );
   }

@@ -8,6 +8,7 @@ import {
   Badge
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import tennis_ball from "../images/tennis-ball.png";
 
 class Header extends Component {
   render() {
@@ -15,52 +16,63 @@ class Header extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/">AdvScheduler</a>
+            <span>
+              <Link to="/">
+                Adv
+                {
+                  <img
+                    className="tennis_ball"
+                    src={tennis_ball}
+                    alt="tennis ball"
+                  />
+                }
+                Scheduler
+              </Link>
+            </span>
           </Navbar.Brand>
         </Navbar.Header>
         {this.props.user ? (
-          <Nav pullRight>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.4}>Separated link</MenuItem>
-            </NavDropdown>
-            <NavItem onClick={this.props.lessonsPage}>Lessons</NavItem>
+          <React.Fragment>
+            <Nav pullRight>
+              <NavDropdown eventKey={3} title="Menu" id="basic-nav-dropdown">
+                <MenuItem>
+                  <Link to="/inbox">Inbox</Link>
+                  <Badge>{this.props.unreadMessages}</Badge>
+                </MenuItem>
 
-            {this.props.userType === "coach" ? (
-              <React.Fragment>
-                <NavItem
-                  eventKey={1}
-                  href="#"
-                  onClick={this.props.studentsPage}
-                >
-                  Students
-                </NavItem>
-                <NavItem onClick={this.props.bookLessonsPage}>Calendar</NavItem>
-                <NavItem onClick={this.props.messagesPage}>Messages</NavItem>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <NavItem onClick={this.props.goalsPage}>Goals</NavItem>
-                <NavItem
-                  eventKey={1}
-                  onClick={this.props.bookLessonsPage}
-                  href="#"
-                >
-                  Book A Lesson
-                </NavItem>
-                <NavItem onClick={this.props.messagesPage}>
-                  Messages<Badge>{this.props.unreadMessages}</Badge>
-                </NavItem>
-              </React.Fragment>
-            )}
-            <NavItem eventKey={2} href="#" onClick={this.props.profilePage}>
-              Profile
-            </NavItem>
-            <NavItem onClick={this.props.handleLogOut}>Log Out</NavItem>
-          </Nav>
+                {this.props.userType === "coach" ? (
+                  <React.Fragment>
+                    <MenuItem>
+                      <Link to="calendar">My Calendar</Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link to="/students">My Students</Link>
+                    </MenuItem>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <MenuItem>
+                      <Link to="calendar">Book A Lesson</Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link to="goals">My Goals</Link>
+                    </MenuItem>
+                  </React.Fragment>
+                )}
+                <MenuItem>
+                  <Link to="/lessons">My Lessons</Link>
+                </MenuItem>
+                <MenuItem divider />
+                <MenuItem>
+                  <Link to="/profile">My Profile</Link>
+                </MenuItem>
+              </NavDropdown>
+
+              <NavItem onClick={this.props.handleLogOut}>
+                <Link to="/">Log Out</Link>
+              </NavItem>
+            </Nav>
+          </React.Fragment>
         ) : (
           <Nav pullRight>
             <NavItem onClick={() => this.props.handleLogIn("signUp")}>

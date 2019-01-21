@@ -27,3 +27,15 @@ button {
   margin-left: 25%;
   justify-content: center;
 }
+
+.tennis_ball {
+  margin-top: 5px;
+  width: 10px;
+  height: 10px;
+}
+
+.homePage_tennis {
+  margin-top: 15px;
+  height: 30px;
+  width: 30px;
+}

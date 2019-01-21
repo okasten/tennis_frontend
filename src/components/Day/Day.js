@@ -99,6 +99,10 @@ class Day extends Component {
       return false;
     }
   };
+
+  addNewLesson = () => {
+    return !this.props.editDay && localStorage.getItem("type") === "coach";
+  };
   render() {
     const lessons = _sortBy(this.props.lessons[this.props.date], "time") || [];
 
@@ -108,7 +112,7 @@ class Day extends Component {
 
     return (
       <article className={cssClasses}>
-        {!this.props.editDay && (
+        {this.addNewLesson() && (
           <button
             className="btn-new-reminder"
             onClick={() => this.props.handleSetEditDay(this.props.day)}

@@ -34,13 +34,28 @@ class ConversationContainer extends Component {
   getConvos = () => {
     if (this.props.conversations) {
       let conversations = this.props.conversations.map(convo => {
-        return (
-          <Conversation
-            key={convo.id}
-            convo={convo}
-            handleClick={this.handleClick}
-          />
-        );
+        let unreadMessages = convo.messages.filter(message => {
+          return message.unread;
+        });
+        if (unreadMessages.length > 0) {
+          return (
+            <strong>
+              <Conversation
+                key={convo.id}
+                convo={convo}
+                handleClick={this.handleClick}
+              />
+            </strong>
+          );
+        } else {
+          return (
+            <Conversation
+              key={convo.id}
+              convo={convo}
+              handleClick={this.handleClick}
+            />
+          );
+        }
       });
       return conversations;
     } else {
@@ -63,7 +78,7 @@ class ConversationContainer extends Component {
         ) : null}
 
         {this.state.newConversation ? (
-          <NewConversationForm />
+          <NewConversationForm handleCancel={this.newConversation} />
         ) : (
           <Button onClick={this.newConversation}>Compose a Message</Button>
         )}

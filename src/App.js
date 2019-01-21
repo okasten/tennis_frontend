@@ -11,16 +11,12 @@ import ProfilePage from "./components/ProfilePage";
 import StudentsPage from "./components/StudentsPage";
 import GoalsContainer from "./containers/GoalsContainer";
 import LessonsContainer from "./containers/LessonsContainer";
+import HomePage from "./components/HomePage";
 
 class App extends Component {
   state = {
     logIn: false,
-    context: "",
-    bookLessonsPage: false,
-    messagesPage: false,
-    profilePage: false,
-    studentsPage: false,
-    goalsPage: false
+    context: ""
   };
 
   handleLogIn = (context, user = null) => {
@@ -46,9 +42,7 @@ class App extends Component {
         .then(response => response.json())
         .then(res => {
           this.setState({
-            logIn: false,
-            bookLessonsPage: false,
-            messagesPage: false
+            logIn: false
           });
           this.props.logIn(res.user);
           if (this.props.user) {
@@ -63,82 +57,10 @@ class App extends Component {
     localStorage.removeItem("type");
 
     this.setState({
-      logIn: true,
-      bookLessonsPage: false,
-      messagesPage: false,
-      profilePage: false,
-      studentsPage: false,
-      goalsPage: false,
-      lessonsPage: false
+      logIn: true
     });
 
     this.props.handleLogOut();
-  };
-
-  bookLessonsPage = () => {
-    this.setState({
-      bookLessonsPage: true,
-      messagesPage: false,
-      profilePage: false,
-      studentsPage: false,
-      goalsPage: false,
-      lessonsPage: false
-    });
-  };
-
-  messagesPage = () => {
-    this.setState({
-      bookLessonsPage: false,
-      messagesPage: true,
-      profilePage: false,
-      studentsPage: false,
-      goalsPage: false,
-      lessonsPage: false
-    });
-  };
-
-  profilePage = () => {
-    this.setState({
-      bookLessonsPage: false,
-      messagesPage: false,
-      profilePage: true,
-      studentsPage: false,
-      goalsPage: false,
-      lessonsPage: false
-    });
-  };
-
-  studentsPage = () => {
-    this.setState({
-      bookLessonsPage: false,
-      messagesPage: false,
-      profilePage: false,
-      studentsPage: true,
-      goalsPage: false,
-      lessonsPage: false
-    });
-  };
-
-  goalsPage = () => {
-    this.setState({
-      bookLessonsPage: false,
-      messagesPage: false,
-      profilePage: false,
-      studentsPage: false,
-      goalsPage: true,
-      lessonsPage: false
-    });
-  };
-
-  lessonsPage = () => {
-    this.setState({
-      bookLessonsPage: false,
-      messagesPage: false,
-      profilePage: false,
-      studentsPage: false,
-      goalsPage: false,
-      lessonsPage: true
-    });
   };
 
   render() {
@@ -150,31 +72,24 @@ class App extends Component {
           user={this.props.user}
           handleLogOut={this.handleLogOut}
           userType={userType}
-          bookLessonsPage={this.bookLessonsPage}
-          messagesPage={this.messagesPage}
-          profilePage={this.profilePage}
-          studentsPage={this.studentsPage}
           unreadMessages={this.props.numberUnread}
-          goalsPage={this.goalsPage}
-          lessonsPage={this.lessonsPage}
         />
+        <Switch>
+          <Route path="/inbox" component={MessagesPage} />
+          <Route path="/calendar" component={CoachCalendars} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="/students" component={StudentsPage} />
+          <Route path="/goals" component={GoalsContainer} />
+          <Route path="/lessons" component={LessonsContainer} />
 
+          <Route path="/" component={HomePage} />
+        </Switch>
         {this.state.logIn ? (
           <LogInForm
             handleLogIn={this.handleLogIn}
             pullUpForm={this.state.context}
           />
         ) : null}
-        {this.state.bookLessonsPage ? (
-          <React.Fragment>
-            <CoachCalendars />
-          </React.Fragment>
-        ) : null}
-        {this.state.messagesPage ? <MessagesPage /> : null}
-        {this.state.profilePage ? <ProfilePage /> : null}
-        {this.state.studentsPage ? <StudentsPage /> : null}
-        {this.state.goalsPage ? <GoalsContainer /> : null}
-        {this.state.lessonsPage ? <LessonsContainer /> : null}
       </React.Fragment>
     );
   }
@@ -195,7 +110,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.getUnreadMessages(user, type))
   };
 };
-// export default withRouter(App);
+
 export default withRouter(
   connect(
     mapStateToProps,
