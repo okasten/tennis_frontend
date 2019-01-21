@@ -29,6 +29,7 @@ class IndividualLesson extends Component {
       return "No notes to show!";
     }
   };
+
   render() {
     return (
       <React.Fragment>

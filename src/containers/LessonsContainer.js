@@ -15,7 +15,10 @@ class LessonsContainer extends Component {
   }
 
   showLessons = () => {
-    let lessons = this.props.lessons.map(lesson => {
+    let lessons = this.props.lessons.filter(lesson => {
+      return lesson.player;
+    });
+    lessons = lessons.map(lesson => {
       return <IndividualLesson key={lesson.id} lesson={lesson} />;
     });
     return lessons;
