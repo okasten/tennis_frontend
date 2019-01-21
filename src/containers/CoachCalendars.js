@@ -58,7 +58,7 @@ class CoachCalendars extends Component {
             </Switch>
           </HashRouter>
         </Calendar>
-        {userType === "coach" ? <TodayLessonsContainer /> : null}
+        <TodayLessonsContainer />
       </React.Fragment>
     );
   }

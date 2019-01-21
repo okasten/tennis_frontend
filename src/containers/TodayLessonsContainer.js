@@ -5,6 +5,7 @@ import IndividualLesson from "../components/IndividualLesson";
 
 class TodayLessonsContainer extends Component {
   render() {
+    let filteredLessons;
     let today = moment().format();
     let date = today.slice(0, 10);
     if (date[9] === "0") {
@@ -17,8 +18,11 @@ class TodayLessonsContainer extends Component {
       this.props.lessons[date].forEach(lesson => {
         todaysLessons.push(lesson);
       });
-
-      let filteredLessons = todaysLessons.filter(lesson => lesson.player);
+      if (localStorage.getItem("type") === "coach") {
+        filteredLessons = todaysLessons.filter(lesson => lesson.player);
+      } else {
+        filteredLessons = todaysLessons.filter(lesson => lesson.coach);
+      }
 
       showTodaysLessons = filteredLessons.map(lesson => {
         return <IndividualLesson lesson={lesson} />;

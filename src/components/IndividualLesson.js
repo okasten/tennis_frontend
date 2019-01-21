@@ -15,7 +15,6 @@ class IndividualLesson extends Component {
   };
 
   editLesson = () => {
-    console.log("edit me");
     this.setState({
       showNotes: false,
       editLesson: !this.state.editLesson
