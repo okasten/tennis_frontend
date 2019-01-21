@@ -12,6 +12,7 @@ import StudentsPage from "./components/StudentsPage";
 import GoalsContainer from "./containers/GoalsContainer";
 import LessonsContainer from "./containers/LessonsContainer";
 import HomePage from "./components/HomePage";
+import video from "./images/BEST TENNIS SHOTS EVER (my favorites) Part 1 [HD].mp4";
 
 class App extends Component {
   state = {
@@ -67,6 +68,11 @@ class App extends Component {
     let userType = localStorage.getItem("type");
     return (
       <React.Fragment>
+        <video className="myVideo" loop autoPlay muted>
+          <source src={video} type="video/mp4" />
+          <source src={video} type="video/ogg" />
+          Your browser does not support the video tag.
+        </video>
         <Header
           handleLogIn={this.handleLogIn}
           user={this.props.user}
