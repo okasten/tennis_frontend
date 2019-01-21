@@ -72,7 +72,7 @@ class Month extends Component {
     };
 
     for (let i = 1; i <= this.state.currentMonth.days; i++) {
-      let date = `${this.state.currentMonth.date}-${("O" + i).slice(-2)}`;
+      let date = `${this.state.currentMonth.date}-${("0" + i).slice(-2)}`;
       props["date"] = date;
       props["day"] = i;
 

@@ -8,10 +8,7 @@ class TodayLessonsContainer extends Component {
     let filteredLessons;
     let today = moment().format();
     let date = today.slice(0, 10);
-    if (date[9] === "0") {
-      date[9] = "O";
-    }
-    // let date = "2019-01-O4";
+    // let date = "2019-01-04";
     let todaysLessons = [];
     let showTodaysLessons = [];
     if (this.props.lessons[date]) {
