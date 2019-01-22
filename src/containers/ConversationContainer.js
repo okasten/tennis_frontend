@@ -68,21 +68,39 @@ class ConversationContainer extends Component {
       newConversation: !this.state.newConversation
     });
   };
+
+  unreadMessages = () => {
+    if (this.props.unreadMessages === 1) {
+      return "You have 1 new message!";
+    } else if (this.props.unreadMessages > 1) {
+      return `You have ${this.props.unreadMessages} new messages!`;
+    }
+  };
   render() {
     return (
-      <React.Fragment>
-        <h1>Conversations</h1>
-        {this.getConvos()}
-        {this.state.showMessages ? (
-          <MessageContainer convo={this.state.currentConversation} />
-        ) : null}
-
-        {this.state.newConversation ? (
-          <NewConversationForm handleCancel={this.newConversation} />
-        ) : (
-          <Button onClick={this.newConversation}>Compose a Message</Button>
-        )}
-      </React.Fragment>
+      <div className="bigBox">
+        <div className="inboxHeader">
+          <h1>INBOX</h1>
+          <h4 className="unreadMessages">
+            {this.props.unreadMessages === 0
+              ? "You have no new messages!"
+              : this.unreadMessages()}
+          </h4>
+          {this.getConvos()}
+          {this.state.newConversation ? (
+            <NewConversationForm handleCancel={this.newConversation} />
+          ) : (
+            <Button className="newConversation" onClick={this.newConversation}>
+              Create A New Message
+            </Button>
+          )}
+        </div>
+        <div className="messageContainer">
+          {this.state.showMessages ? (
+            <MessageContainer convo={this.state.currentConversation} />
+          ) : null}
+        </div>
+      </div>
     );
   }
 }
@@ -90,7 +108,8 @@ class ConversationContainer extends Component {
 const mapStateToProps = state => {
   return {
     user: state.currentUser,
-    conversations: state.conversations
+    conversations: state.conversations,
+    unreadMessages: state.numberUnread
   };
 };
 

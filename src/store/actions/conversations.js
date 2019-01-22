@@ -73,7 +73,7 @@ export const markMessagesRead = convo => {
       `http://localhost:3000/api/v1/conversations/${convo.id}/markRead`
     )
       .then(r => r.json())
-      .then(console.log);
+      .then(numberUnread(0));
   };
 };
 
