@@ -14,7 +14,6 @@ class Day extends Component {
       id: null,
       time: null,
       description: null,
-      color: defaultColor,
       player: null,
       location: null
     }
@@ -23,8 +22,7 @@ class Day extends Component {
   handleSetColor = data => {
     this.setState({
       editLesson: {
-        ...this.state.editLesson,
-        color: data.color
+        ...this.state.editLesson
       }
     });
   };
@@ -42,9 +40,12 @@ class Day extends Component {
 
   handleCreateUpdateLesson = (e, update, userType) => {
     e.preventDefault();
+    let description;
 
     const form = e.target;
-    const description = form.querySelector(".description").value.trim();
+    if (form.querySelector(".description")) {
+      description = form.querySelector(".description").value.trim();
+    }
     let user;
 
     if (userType === "player") {
@@ -54,24 +55,21 @@ class Day extends Component {
       user = null;
     }
     console.log(user);
-    if (description.length) {
+    if (description !== null) {
       const payloadUpdate = {
         date: this.props.date,
         notes: description,
         time: this.state.editLesson.time,
         location: this.state.editLesson.location,
-        player: user,
-        color: this.state.editLesson.color || defaultColor
+        player: user
       };
       if (userType === "coach") {
         const payloadCreate = {
           date: this.props.date,
           time: form.querySelector(".rc-time-picker-input").value,
-          notes: description,
           location: this.state.editLesson.location,
           coach: this.props.user,
-          player: null,
-          color: this.state.editLesson.color || defaultColor
+          player: null
         };
 
         this.props.createLesson(payloadCreate);
@@ -88,7 +86,6 @@ class Day extends Component {
   };
 
   handleDeleteLesson = id => {
-    console.log(id);
     this.props.deleteLesson(this.props.user, id, this.props.date);
   };
 

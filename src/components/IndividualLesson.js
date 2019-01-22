@@ -39,12 +39,12 @@ class IndividualLesson extends Component {
   render() {
     return (
       <React.Fragment>
-        <h3 onClick={this.showNotes}>
+        <h4 className="individualLesson" onClick={this.showNotes}>
+          {this.props.lesson.time} <h5>with</h5>{" "}
           {localStorage.getItem("type") === "coach"
             ? this.props.lesson.player.name
             : this.props.lesson.coach.name}{" "}
-          on {this.props.lesson.date}
-        </h3>
+        </h4>
         {this.state.editLesson ? (
           <AddNotesForm closeEdit={this.closeEdit} lesson={this.props.lesson} />
         ) : null}

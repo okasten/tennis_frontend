@@ -43,7 +43,7 @@ class CoachCalendars extends Component {
           {userType !== "coach" ? (
             <React.Fragment>
               <label>Select a coach to view their calendar</label>
-              <select onChange={this.chooseCoach}>
+              <select className="select" onChange={this.chooseCoach}>
                 <option>Select</option>
                 {coaches}
               </select>

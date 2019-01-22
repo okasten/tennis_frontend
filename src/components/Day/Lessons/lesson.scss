@@ -20,17 +20,19 @@
     top: 0;
     right: 0;
     visibility: hidden;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.8);
     padding: 5px 3px;
     display: flex;
     justify-content: flex-end;
     z-index: 1;
+    color: rgba(0, 0, 77, 1);
 
     button {
       float: right;
+      font-size: 14px;
 
       .fas {
-        color: #fff;
+        color: rgba(0, 0, 77, 1);
         font-size: 14px;
       }
     }

@@ -22,7 +22,7 @@ class Weather extends Component {
   }
 
   shouldComponentUpdate() {
-    if (count > 2) {
+    if (count > 1) {
       return false;
     } else {
       return true;

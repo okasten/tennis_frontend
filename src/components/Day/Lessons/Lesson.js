@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./lesson.scss";
+import { Glyphicon } from "react-bootstrap";
 class Lesson extends Component {
   determinePermissions = () => {
     let userType = localStorage.getItem("type");
@@ -9,17 +10,17 @@ class Lesson extends Component {
           <button
             onClick={() => this.props.handleDeleteLesson(this.props.lesson.id)}
           >
-            <i className="fas fa-trash-alt" />
+            <Glyphicon glyph="trash" />
           </button>
           <button onClick={() => this.props.handleSetEdit(this.props.lesson)}>
-            <i className="fas fa-edit" />
+            <Glyphicon glyph="edit" />
           </button>
         </React.Fragment>
       );
     } else if (!this.props.lesson.player) {
       return (
         <button onClick={() => this.props.handleSetEdit(this.props.lesson)}>
-          <i className="fas fa-edit" />
+          <Glyphicon glyph="book" />
         </button>
       );
     }

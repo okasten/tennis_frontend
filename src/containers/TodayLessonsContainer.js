@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
-import IndividualLesson from "../components/IndividualLesson";
+import TodayIndividualLesson from "../components/TodayIndividualLesson";
+import * as actions from "../store/actions";
 
 class TodayLessonsContainer extends Component {
   render() {
@@ -20,14 +21,13 @@ class TodayLessonsContainer extends Component {
       } else {
         filteredLessons = todaysLessons.filter(lesson => lesson.coach);
       }
-
       showTodaysLessons = filteredLessons.map(lesson => {
-        return <IndividualLesson lesson={lesson} />;
+        return <TodayIndividualLesson lesson={lesson} />;
       });
     }
     return (
       <div>
-        <h3>Today's Lessons</h3> <br />
+        <h1 className="todayHeader">Today's Lessons</h1> <br />
         {showTodaysLessons.length > 0 ? (
           <div>{showTodaysLessons}</div>
         ) : (
