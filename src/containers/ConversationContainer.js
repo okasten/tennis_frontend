@@ -25,7 +25,8 @@ class ConversationContainer extends Component {
   handleClick = convo => {
     this.setState({
       showMessages: true,
-      currentConversation: convo
+      currentConversation: convo,
+      newConversation: false
     });
 
     this.props.markMessagesRead(convo);
@@ -35,17 +36,17 @@ class ConversationContainer extends Component {
     if (this.props.conversations) {
       let conversations = this.props.conversations.map(convo => {
         let unreadMessages = convo.messages.filter(message => {
-          return message.unread;
+          return !message.read;
         });
+
         if (unreadMessages.length > 0) {
           return (
-            <strong>
-              <Conversation
-                key={convo.id}
-                convo={convo}
-                handleClick={this.handleClick}
-              />
-            </strong>
+            <Conversation
+              numUnread={unreadMessages.length}
+              key={convo.id}
+              convo={convo}
+              handleClick={this.handleClick}
+            />
           );
         } else {
           return (
@@ -65,7 +66,8 @@ class ConversationContainer extends Component {
 
   newConversation = () => {
     this.setState({
-      newConversation: !this.state.newConversation
+      newConversation: !this.state.newConversation,
+      showMessages: false
     });
   };
 
@@ -87,19 +89,24 @@ class ConversationContainer extends Component {
               : this.unreadMessages()}
           </h4>
           {this.getConvos()}
-          {this.state.newConversation ? (
-            <NewConversationForm handleCancel={this.newConversation} />
-          ) : (
+          {!this.state.newConversation ? (
             <Button className="newConversation" onClick={this.newConversation}>
               Create A New Message
             </Button>
-          )}
-        </div>
-        <div className="messageContainer">
-          {this.state.showMessages ? (
-            <MessageContainer convo={this.state.currentConversation} />
           ) : null}
         </div>
+
+        {this.state.newConversation ? (
+          <div className="newConversationForm">
+            <NewConversationForm handleCancel={this.newConversation} />
+          </div>
+        ) : null}
+
+        {this.state.showMessages ? (
+          <div className="messageContainer">
+            <MessageContainer convo={this.state.currentConversation} />
+          </div>
+        ) : null}
       </div>
     );
   }

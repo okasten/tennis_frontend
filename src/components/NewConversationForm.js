@@ -73,6 +73,7 @@ class NewConversationForm extends Component {
             name="to"
             onClick={this.handleChange}
             onChange={this.handleChange}
+            className="select"
           >
             <option>Select</option>
             {this.createOptionsForReceivers()}
@@ -81,6 +82,7 @@ class NewConversationForm extends Component {
         <FormGroup>
           <label>Subject: </label>
           <input
+            className="replyForm"
             type="text"
             name="subject"
             value={this.state.subject}
@@ -90,14 +92,23 @@ class NewConversationForm extends Component {
         <FormGroup>
           <label>Message: </label>
           <textarea
+            className="replyForm"
             type="text"
             name="content"
             value={this.state.content}
             onChange={this.handleChange}
           />
         </FormGroup>
-        <Button onClick={this.handleSendMessage}>Send</Button>
-        <Button onClick={this.props.handleCancel}>Cancel</Button>
+        <Button className="send" onClick={this.handleSendMessage}>
+          Send
+        </Button>
+        <Button
+          className="send"
+          bsStyle="danger"
+          onClick={this.props.handleCancel}
+        >
+          Cancel
+        </Button>
       </Form>
     );
   }

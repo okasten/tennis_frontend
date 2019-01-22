@@ -3,29 +3,29 @@ import React, { Component } from "react";
 class Message extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="message">
         {!this.props.message.read ? (
-          <strong>
+          <React.Fragment>
             {this.props.message.to !== null ? (
-              <h3>To: {this.props.message.to}</h3>
+              <h4>To: {this.props.message.to}</h4>
             ) : null}
-            <h3>From: {this.props.message.from}</h3>
+            <h4>From: {this.props.message.from}</h4>
 
-            <h4>{this.props.message.subject}</h4>
-            <h1>{this.props.message.content}</h1>
-          </strong>
+            <h4>Subject: {this.props.message.subject}</h4>
+            <h3 className="messageContent">{this.props.message.content}</h3>
+          </React.Fragment>
         ) : (
           <React.Fragment>
             {this.props.message.to !== null ? (
-              <h3>To: {this.props.message.to}</h3>
+              <h4>To: {this.props.message.to}</h4>
             ) : null}
-            <h3>From: {this.props.message.from}</h3>
+            <h4>From: {this.props.message.from}</h4>
 
-            <h4>{this.props.message.subject}</h4>
-            <h6>{this.props.message.content}</h6>
+            <h4>Subject: {this.props.message.subject}</h4>
+            <h6 className="messageContent">{this.props.message.content}</h6>
           </React.Fragment>
         )}
-      </React.Fragment>
+      </div>
     );
   }
 }

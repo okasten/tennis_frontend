@@ -64,12 +64,6 @@ a.homeLink {
   margin-bottom: 10px;
 }
 
-.convo-form {
-  width: 50%;
-  margin-left: 25%;
-  justify-content: center;
-}
-
 /* Home Page */
 .jumbotron {
   background-color: rgba(0, 0, 77, 0.3);
@@ -183,4 +177,72 @@ label {
   border-color: white;
   border-width: 3px;
   border-radius: 10px;
+}
+h3.strongUnread {
+  color: #ff66ff;
+}
+
+.reply {
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px;
+  border-color: white;
+  border-width: 2px;
+  border-radius: 10px;
+  font: rgba(0, 0, 77);
+}
+
+/* Reply Form */
+.replyForm {
+  background-color: white;
+  border-radius: 10px;
+  color: rgba(0, 0, 77);
+  height: 50%;
+  font: inherit;
+}
+
+.send {
+  width: 30%;
+  display: inline-block;
+  margin: auto;
+  margin-left: 12.5%;
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+.message {
+  border-top: solid 1px white;
+  width: 95%;
+  margin: auto;
+}
+
+.messageContent {
+  margin-left: 5%;
+}
+
+.newConversationForm {
+  justify-content: center;
+  display: inline-block;
+  overflow: scroll;
+  margin-left: 40px;
+  margin-top: 40px;
+  max-height: 500px;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 55%;
+  color: white;
+  background-color: rgba(0, 0, 77, 0.6);
+  border: solid;
+  border-color: white;
+  border-width: 3px;
+  border-radius: 10px;
+}
+
+.select {
+  color: rgba(0, 0, 77);
+  margin-left: 2%;
 }

@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 class MessageContainer extends Component {
   state = {
     reply: false,
-    content: ""
+    content: "Reply..."
   };
   componentDidMount() {
     this.props.getMessages(this.props.user, this.props.convo);
@@ -55,7 +55,7 @@ class MessageContainer extends Component {
 
     this.setState({
       reply: !this.state.reply,
-      content: ""
+      content: "Reply..."
     });
   };
 
@@ -72,12 +72,25 @@ class MessageContainer extends Component {
                 value={this.state.content}
                 placeholder="Reply..."
                 onChange={this.handleChange}
+                className="replyForm"
               />
             </form>
-            <Button onClick={this.sendReply}>Send</Button>
+            <Button className="send" onClick={this.sendReply}>
+              Send
+            </Button>
+            <Button
+              className="send"
+              bsStyle="danger"
+              onClick={this.handleReply}
+            >
+              {" "}
+              Cancel
+            </Button>
           </React.Fragment>
         ) : (
-          <Button onClick={this.handleReply}>Reply</Button>
+          <Button className="reply" onClick={this.handleReply}>
+            Reply
+          </Button>
         )}
       </React.Fragment>
     );
