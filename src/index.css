@@ -36,12 +36,36 @@ button {
   outline: 0;
   cursor: pointer;
 }
+
+/* Header */
+a {
+  color: white;
+  font-size: 20px;
+}
+
+.navbar-default {
+  background-color: rgba(0, 0, 77, 0.3);
+
+  border-width: 3px;
+  color: white;
+  border-radius: 10px;
+}
+
 .convo-form {
   width: 50%;
   margin-left: 25%;
   justify-content: center;
 }
-
+/* Home Page */
+.jumbotron {
+  background-color: rgba(0, 0, 77, 0.3);
+  color: white;
+  border-width: 3px;
+  border: solid;
+  border-radius: 10px;
+  padding-left: 20px;
+  margin-top: 5%;
+}
 .tennis_ball {
   margin-top: 5px;
   width: 10px;
@@ -52,4 +76,35 @@ button {
   margin-top: 15px;
   height: 30px;
   width: 30px;
+}
+
+/* Log In Form */
+.login {
+  background-color: rgba(0, 0, 77, 0.6);
+  text-align: center;
+  max-width: 40%;
+  max-height: 50%;
+  border: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  border-color: white;
+  justify-content: center;
+  margin: auto;
+  padding: 40px;
+  padding-top: 20px;
+  color: white;
+}
+.formGroup {
+  padding: 3px;
+  display: grid;
+  align-items: center;
+}
+
+.col-sm-10 {
+  margin: auto;
+}
+
+.loginButton {
+  width: 75%;
+  margin-top: 10px;
 }

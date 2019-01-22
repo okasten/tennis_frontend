@@ -32,11 +32,12 @@ class LogInForm extends Component {
 
   render() {
     return (
-      <Form>
+      <Form className="login">
         {this.props.pullUpForm === "signUp" ? (
           <React.Fragment>
-            <FormGroup>
-              <Col sm={2}>First Name</Col>
+            <h2>Sign Up!</h2>
+            <FormGroup className="formGroup">
+              <label>First Name</label>
               <Col sm={10}>
                 <input
                   type="text"
@@ -47,8 +48,8 @@ class LogInForm extends Component {
                 />
               </Col>
             </FormGroup>
-            <FormGroup>
-              <Col sm={2}>Last Name</Col>
+            <FormGroup className="formGroup">
+              <label>Last Name</label>
               <Col sm={10}>
                 <input
                   type="text"
@@ -59,8 +60,8 @@ class LogInForm extends Component {
                 />
               </Col>
             </FormGroup>
-            <FormGroup>
-              <Col sm={2}>Email</Col>
+            <FormGroup className="formGroup">
+              <label>Email</label>
               <Col sm={10}>
                 <input
                   type="text"
@@ -72,10 +73,12 @@ class LogInForm extends Component {
               </Col>
             </FormGroup>
           </React.Fragment>
-        ) : null}
+        ) : (
+          <h2>Log In!</h2>
+        )}
 
-        <FormGroup>
-          <Col sm={2}>Username</Col>
+        <FormGroup className="formGroup">
+          <label>Username</label>
           <Col sm={10}>
             <input
               type="text"
@@ -87,8 +90,8 @@ class LogInForm extends Component {
           </Col>
         </FormGroup>
 
-        <FormGroup>
-          <Col sm={2}>Password</Col>
+        <FormGroup className="formGroup">
+          <label>Password</label>
           <Col sm={10}>
             <input
               type="password"
@@ -100,36 +103,44 @@ class LogInForm extends Component {
           </Col>
         </FormGroup>
 
-        <FormGroup>
+        <FormGroup className="formGroup">
           {this.props.pullUpForm === "signUp" ? (
             <React.Fragment>
-              <FormGroup>
-                <Radio
-                  name="userType"
-                  inline
-                  onChange={this.handleChange}
-                  value="coaches"
-                >
-                  {" "}
-                  I am a Coach{" "}
-                </Radio>
-                <Radio
-                  name="userType"
-                  inline
-                  onChange={this.handleChange}
-                  value="players"
-                >
-                  {" "}
-                  I am a Student{" "}
-                </Radio>
+              <FormGroup className="formGroup">
+                <span>
+                  <Radio
+                    name="userType"
+                    inline
+                    onChange={this.handleChange}
+                    value="coaches"
+                  >
+                    {" "}
+                    I am a Coach{" "}
+                  </Radio>
+                  <Radio
+                    name="userType"
+                    inline
+                    onChange={this.handleChange}
+                    value="players"
+                  >
+                    {" "}
+                    I am a Student{" "}
+                  </Radio>
+                </span>
               </FormGroup>
               <Link to="/">
-                <Button onClick={this.handleSignUp}> Sign Up </Button>
+                <Button className="loginButton" onClick={this.handleSignUp}>
+                  {" "}
+                  Sign Up!{" "}
+                </Button>
               </Link>
             </React.Fragment>
           ) : (
             <Link to="/">
-              <Button onClick={this.handleLogIn}> Log In </Button>
+              <Button className="loginButton" onClick={this.handleLogIn}>
+                {" "}
+                Log In!{" "}
+              </Button>
             </Link>
           )}
         </FormGroup>

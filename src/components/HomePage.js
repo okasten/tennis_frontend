@@ -5,8 +5,8 @@ import tennis_ball from "../images/tennis-ball.png";
 class HomePage extends Component {
   render() {
     return (
-      <Jumbotron>
-        <h1>
+      <Jumbotron className="jumbotron">
+        <h1 className="adv">
           Adv
           {
             <img
@@ -17,6 +17,7 @@ class HomePage extends Component {
           }
           Scheduler
         </h1>
+        <p>The new scheduler for all your tennis lessons. Advantage, you.</p>
       </Jumbotron>
     );
   }

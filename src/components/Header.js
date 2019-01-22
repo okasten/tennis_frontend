@@ -13,7 +13,7 @@ import tennis_ball from "../images/tennis-ball.png";
 class Header extends Component {
   render() {
     return (
-      <Navbar>
+      <Navbar className="Navbar">
         <Navbar.Header>
           <Navbar.Brand>
             <span>
