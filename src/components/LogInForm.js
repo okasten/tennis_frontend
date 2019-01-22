@@ -74,7 +74,7 @@ class LogInForm extends Component {
             </FormGroup>
           </React.Fragment>
         ) : (
-          <h2>Log In!</h2>
+          <h1>Log In!</h1>
         )}
 
         <FormGroup className="formGroup">

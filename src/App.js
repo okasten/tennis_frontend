@@ -88,7 +88,7 @@ class App extends Component {
           <Route path="/goals" component={GoalsContainer} />
           <Route path="/lessons" component={LessonsContainer} />
 
-          <Route path="/" component={HomePage} />
+          <Route path="/" exact component={HomePage} />
         </Switch>
         {this.state.logIn ? (
           <LogInForm

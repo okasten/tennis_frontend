@@ -17,7 +17,7 @@ class Header extends Component {
         <Navbar.Header>
           <Navbar.Brand>
             <span>
-              <Link to="/">
+              <Link to="/" className="homeLink">
                 Adv
                 {
                   <img
@@ -36,8 +36,12 @@ class Header extends Component {
             <Nav pullRight>
               <NavDropdown eventKey={3} title="Menu" id="basic-nav-dropdown">
                 <MenuItem>
-                  <Link to="/inbox">Inbox</Link>
-                  <Badge>{this.props.unreadMessages}</Badge>
+                  <Link to="/inbox" className="menuItem">
+                    Inbox
+                  </Link>
+                  {this.props.unreadMessages > 0 ? (
+                    <Badge className="badge">{this.props.unreadMessages}</Badge>
+                  ) : null}
                 </MenuItem>
 
                 {this.props.userType === "coach" ? (
@@ -69,18 +73,26 @@ class Header extends Component {
               </NavDropdown>
 
               <NavItem onClick={this.props.handleLogOut}>
-                <Link to="/">Log Out</Link>
+                <Link to="/" className="homeLink">
+                  Log Out
+                </Link>
               </NavItem>
             </Nav>
           </React.Fragment>
         ) : (
           <Nav pullRight>
             <NavItem onClick={() => this.props.handleLogIn("signUp")}>
-              <Link to="/signup"> Sign Up </Link>
+              <Link to="/signup" className="homeLink">
+                {" "}
+                Sign Up{" "}
+              </Link>
             </NavItem>
 
             <NavItem onClick={() => this.props.handleLogIn("logIn")}>
-              <Link to="/login"> Log In </Link>
+              <Link to="/login" className="homeLink">
+                {" "}
+                Log In{" "}
+              </Link>
             </NavItem>
           </Nav>
         )}
