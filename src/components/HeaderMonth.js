@@ -6,7 +6,7 @@ const headerMonth = props => (
   <header className="month-header">
     <div className="row">
       <Link to={"/" + props.previousMonth.slug}>
-        <i className="fas fa-chevron-circle-left" />
+        <i className="fas left fa-chevron-circle-left" />
       </Link>
     </div>
     <div className="row">
@@ -14,7 +14,7 @@ const headerMonth = props => (
     </div>
     <div className="row">
       <Link to={"/" + props.nextMonth.slug}>
-        <i className="fas fa-chevron-circle-right" />
+        <i className="fas right fa-chevron-circle-right" />
       </Link>
     </div>
   </header>

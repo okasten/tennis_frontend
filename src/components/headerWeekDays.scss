@@ -4,12 +4,14 @@
   flex-wrap: wrap;
   position: relative;
   z-index: 1;
-  background: #111;
-  border-bottom: 2px solid #000;
-  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 77, 0.8);
+  border: 2px white solid;
+  border-radius: 10px;
+  color: white;
   padding: 5px 0;
   width: 75%;
   left: 13.5%;
+  font-size: 15px;
   strong {
     flex: 1 0 14.28%;
     max-width: calc(100% / 7);

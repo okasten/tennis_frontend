@@ -7,7 +7,7 @@ $day-width: 14.28%; // 100 / 7 = 14.28
   min-height: 130px;
   padding: 10px;
   box-shadow: inset 0 1px 1px #000;
-  border-bottom-color: black;
+  border-bottom-color: white;
   border-width: 0.5px;
   border-style: solid;
   border-radius: 1px;
@@ -15,6 +15,7 @@ $day-width: 14.28%; // 100 / 7 = 14.28
   &:hover {
     .btn-new-reminder {
       opacity: 1;
+      color: white;
     }
   }
 
@@ -40,10 +41,10 @@ $day-width: 14.28%; // 100 / 7 = 14.28
 
     .fas {
       font-size: 38px;
-      color: rgba(0, 0, 0, 0.4);
+      color: rgba(204, 204, 204, 0.4);
 
       &:hover {
-        color: #000;
+        color: #fff;
       }
     }
   }

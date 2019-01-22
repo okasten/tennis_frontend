@@ -36,30 +36,34 @@ class CoachCalendars extends Component {
     }
 
     return (
-      <React.Fragment>
-        <Weather />
-        <br />
-        {userType !== "coach" ? (
-          <React.Fragment>
-            <label>Select a coach to view their calendar</label>
-            <select onChange={this.chooseCoach}>
-              <option>Select</option>
-              {coaches}
-            </select>
-          </React.Fragment>
-        ) : (
-          this.props.loadLessons(this.props.user.id)
-        )}
-        <Calendar>
-          <HashRouter>
-            <Switch>
-              <Route path="/:year/:month" component={Month} />
-              <Route path="/" exact component={Month} />
-            </Switch>
-          </HashRouter>
-        </Calendar>
-        <TodayLessonsContainer />
-      </React.Fragment>
+      <div>
+        <div className="calendarPage">
+          <Weather />
+          <br />
+          {userType !== "coach" ? (
+            <React.Fragment>
+              <label>Select a coach to view their calendar</label>
+              <select onChange={this.chooseCoach}>
+                <option>Select</option>
+                {coaches}
+              </select>
+            </React.Fragment>
+          ) : (
+            this.props.loadLessons(this.props.user.id)
+          )}
+          <Calendar>
+            <HashRouter>
+              <Switch>
+                <Route path="/:year/:month" component={Month} />
+                <Route path="/" exact component={Month} />
+              </Switch>
+            </HashRouter>
+          </Calendar>
+        </div>
+        <div className="todaysLessons">
+          <TodayLessonsContainer />
+        </div>
+      </div>
     );
   }
 }

@@ -22,7 +22,7 @@ class Weather extends Component {
   }
 
   shouldComponentUpdate() {
-    if (count > 1) {
+    if (count > 2) {
       return false;
     } else {
       return true;
@@ -51,12 +51,14 @@ class Weather extends Component {
     return (
       <React.Fragment>
         {this.props.weather ? (
-          <h1>
+          <h1 className="weather">
             {" "}
-            {this.props.weather.currently.temperature}° {this.chooseIcon()}
+            Current Temperature: {
+              this.props.weather.currently.temperature
+            }° {this.chooseIcon()}
           </h1>
         ) : (
-          "Loading Weather..."
+          <h1 className="weather">Loading Weather...</h1>
         )}
       </React.Fragment>
     );

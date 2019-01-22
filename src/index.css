@@ -224,6 +224,7 @@ h3.strongUnread {
   margin-left: 5%;
 }
 
+/* New Conversation Form */
 .newConversationForm {
   justify-content: center;
   display: inline-block;
@@ -245,4 +246,19 @@ h3.strongUnread {
 .select {
   color: rgba(0, 0, 77);
   margin-left: 2%;
+}
+/* Calendar Page */
+.calendarPage {
+  color: white;
+  background-color: rgba(0, 0, 77, 0.3);
+  border: solid;
+  border-color: white;
+  border-width: 3px;
+  border-radius: 10px;
+  padding: 2%;
+  max-width: 75%;
+}
+/* Weather */
+.weather {
+  font-size: 30px;
 }

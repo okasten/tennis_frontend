@@ -6,12 +6,18 @@
   .row {
     flex: 3;
 
+    &:first-child {
+      text-align: left;
+      margin-left: 30%;
+    }
+
     &:nth-child(2) {
       text-align: center;
     }
 
     &:last-child {
       text-align: right;
+      margin-right: 30%;
     }
 
     h1 {
@@ -20,10 +26,9 @@
 
     .fas {
       font-size: 55px;
-      color: rgba(0, 0, 0, 0.5);
-
+      color: rgba(255, 255, 255, 0.7);
       &:hover {
-        color: #000;
+        color: #fff;
       }
     }
   }
