@@ -21,10 +21,10 @@ class StudentGoal extends Component {
       <React.Fragment>
         <h3 onClick={this.handleClick}>{this.props.goal.objective}</h3>
         {this.state.showData ? (
-          <React.Fragment>
+          <div className="studentGoalNotes">
             <h4>Date Set: {this.goalCreatedAt()}</h4>
             <h4>Notes: {this.props.goal.notes}</h4>
-          </React.Fragment>
+          </div>
         ) : null}
       </React.Fragment>
     );

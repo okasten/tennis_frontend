@@ -506,3 +506,77 @@ h3.strongUnread {
   width: 50%;
   margin: auto;
 }
+
+.studentsPage {
+  justify-content: center;
+  display: inline-block;
+  overflow: scroll;
+  margin-left: 40px;
+  margin-top: 2.5%;
+  height: 350px;
+
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 45%;
+  color: white;
+  background-color: rgba(0, 0, 77, 0.6);
+  border: solid;
+  border-color: white;
+  border-width: 3px;
+  border-radius: 10px;
+  float: left;
+}
+
+.studentHeader {
+  text-align: center;
+  font-size: 40px;
+  border-bottom: 1px solid white;
+}
+
+.studentName {
+  padding-left: 5px;
+  margin: 3%;
+}
+
+.indiStudent {
+  justify-content: center;
+  display: inline-block;
+  overflow: scroll;
+  margin-left: 40px;
+  margin-top: 2.5%;
+  height: 725px;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 45%;
+  color: white;
+  background-color: rgba(0, 0, 77, 0.6);
+  border: solid;
+  border-color: white;
+  border-width: 3px;
+  border-radius: 10px;
+}
+
+.playerGoalsHeader {
+  border-bottom: 1px solid white;
+}
+
+.playerGoals {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.goalButtons {
+  width: 40%;
+  display: inline-block;
+  margin-left: 5%;
+  margin-bottom: 3%;
+  margin-top: 5%;
+  float: left;
+  text-align: center;
+  justify-content: center;
+}
+
+.studentGoalNotes {
+  padding-left: 20px;
+}

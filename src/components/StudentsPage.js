@@ -24,21 +24,28 @@ class StudentsPage extends Component {
   render() {
     if (this.props.students) {
       studentNames = this.props.students.map(student => {
-        return <h4 onClick={() => this.show(student)}>{student.name}</h4>;
+        return (
+          <h2 className="studentName" onClick={() => this.show(student)}>
+            {student.name}
+          </h2>
+        );
       });
     }
 
     return (
-      <React.Fragment>
-        <h1>Student's Page</h1>
-        <h3>My Students</h3>
-        {studentNames.length > 0
-          ? studentNames
-          : "You don't have any students yet!"}
+      <div>
+        <div className="studentsPage">
+          <h1 className="studentHeader">My Students</h1>
+          {studentNames.length > 0
+            ? studentNames
+            : "You don't have any students yet!"}
+        </div>
         {this.state.studentShowPage ? (
-          <IndividualStudent student={this.state.currentStudent} />
+          <div className="indiStudent">
+            <IndividualStudent student={this.state.currentStudent} />
+          </div>
         ) : null}
-      </React.Fragment>
+      </div>
     );
   }
 }
