@@ -418,3 +418,91 @@ h3.strongUnread {
 .editGoalForm {
   margin-top: 8%;
 }
+
+/* Lessons Page */
+
+.lessonsContainer {
+  display: block;
+  justify-content: center;
+  color: white;
+  background-color: rgba(0, 0, 77, 0.6);
+  border: solid;
+  border-color: white;
+  border-width: 3px;
+  border-radius: 10px;
+  width: 50%;
+  max-height: 70%;
+  margin-top: 2.5%;
+  margin: auto;
+  overflow: scroll;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.individualLessons {
+  text-align: center;
+  margin: 10px;
+  border: 2px white solid;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 10px;
+}
+
+.individualLesson {
+  margin: 25px;
+}
+
+.lessonSelect {
+  padding-left: 10px;
+}
+
+.showNotes {
+  padding-left: 30px;
+}
+
+.notes {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 2%;
+}
+
+/* Profile Page */
+.profileContainer {
+  display: block;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(0, 0, 77, 0.6);
+  border: solid;
+  border-color: white;
+  border-width: 3px;
+  border-radius: 10px;
+  width: 50%;
+  max-height: 70%;
+  margin-top: 2.5%;
+  margin: auto;
+  overflow: scroll;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.profileHeader {
+  margin: 15px;
+}
+
+.editProfileButton {
+  width: 30%;
+  display: inline;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 2%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.profileForm {
+  width: 50%;
+  margin: auto;
+}

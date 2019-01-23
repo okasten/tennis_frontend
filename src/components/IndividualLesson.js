@@ -38,24 +38,32 @@ class IndividualLesson extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h4 className="individualLesson" onClick={this.showNotes}>
-          {this.props.lesson.time} <h5>with</h5>{" "}
-          {localStorage.getItem("type") === "coach"
+      <div className="individualLessons">
+        <h3 className="individualLesson" onClick={this.showNotes}>
+          {this.props.lesson.date} with{" "}
+          {localStorage.getItem("type") === "coach" &&
+          this.props.lesson.player !== null
             ? this.props.lesson.player.name
             : this.props.lesson.coach.name}{" "}
-        </h4>
+        </h3>
         {this.state.editLesson ? (
           <AddNotesForm closeEdit={this.closeEdit} lesson={this.props.lesson} />
         ) : null}
         {this.state.showNotes ? (
-          <h5>
-            {this.lessonNotes()}
-            <Button onClick={this.editLesson}>Edit Notes</Button>
-            <Button>Delete Lesson</Button>
-          </h5>
+          <div className="showNotes">
+            <h4>
+              {this.lessonNotes()}
+              <br />
+              <Button className="notes" onClick={this.editLesson}>
+                Edit Notes
+              </Button>
+              <Button bsStyle="danger" className="notes">
+                Delete Lesson
+              </Button>
+            </h4>
+          </div>
         ) : null}
-      </React.Fragment>
+      </div>
     );
   }
 }

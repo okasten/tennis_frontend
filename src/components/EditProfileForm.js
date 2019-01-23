@@ -33,9 +33,10 @@ class EditProfileForm extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleUpdate}>
+      <form className="profileForm" onSubmit={this.handleUpdate}>
         <label>Username: </label>
         <input
+          className="inputGoal"
           type="text"
           value={this.state.username}
           onChange={this.handleChange}
@@ -44,6 +45,7 @@ class EditProfileForm extends Component {
         />{" "}
         <label>Name: </label>
         <input
+          className="inputGoal"
           type="text"
           value={this.state.name}
           onChange={this.handleChange}
@@ -52,6 +54,7 @@ class EditProfileForm extends Component {
         />
         <label>Picture: </label>
         <input
+          className="inputGoal"
           type="text"
           value={this.state.picture}
           onChange={this.handleChange}
@@ -60,6 +63,7 @@ class EditProfileForm extends Component {
         />
         <label>Email: </label>
         <input
+          className="inputGoal"
           type="text"
           value={this.state.email}
           onChange={this.handleChange}
@@ -70,6 +74,7 @@ class EditProfileForm extends Component {
           <React.Fragment>
             <label>Age: </label>
             <input
+              className="inputGoal"
               type="number"
               value={this.state.age}
               onChange={this.handleChange}
@@ -78,6 +83,7 @@ class EditProfileForm extends Component {
             />
             <label>Level: </label>
             <input
+              className="inputGoal"
               type="text"
               value={this.state.level}
               onChange={this.handleChange}
@@ -86,7 +92,16 @@ class EditProfileForm extends Component {
             />
           </React.Fragment>
         ) : null}
-        <Button onClick={this.handleUpdate}>Update Profile</Button>
+        <Button className="editProfileButton" onClick={this.handleUpdate}>
+          Update Profile
+        </Button>
+        <Button
+          className="editProfileButton"
+          bsStyle="danger"
+          onClick={() => this.props.handleForm()}
+        >
+          Cancel
+        </Button>
       </form>
     );
   }

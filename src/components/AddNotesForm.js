@@ -26,8 +26,16 @@ class AddNotesForm extends Component {
           value={this.state.notes}
           onChange={this.handleChange}
         />
-        <Button onClick={() => this.props.closeEdit()}>Cancel</Button>
-        <Button onClick={this.updateLesson}>Update Notes</Button>
+        <Button className="notes" onClick={this.updateLesson}>
+          Update Notes
+        </Button>
+        <Button
+          bsStyle="danger"
+          className="notes"
+          onClick={() => this.props.closeEdit()}
+        >
+          Cancel
+        </Button>
       </form>
     );
   }

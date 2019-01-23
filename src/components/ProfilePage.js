@@ -15,23 +15,29 @@ class ProfilePage extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <h1>{this.props.user.name}'s Profile</h1>
+      <div className="profileContainer">
+        <h1 className="profileHeader">{this.props.user.name}'s Profile</h1>
         <img src={this.props.user.picture} alt="profile" />
-        <h4>Username: {this.props.user.username}</h4>
-        <h4>Email: {this.props.user.email}</h4>
-        {localStorage.getItem("type") === "player" ? (
-          <React.Fragment>
-            <h4>Age: {this.props.user.age}</h4>
-            <h4>Level: {this.props.user.level}</h4>
-          </React.Fragment>
-        ) : null}
 
-        <Button onClick={this.handleClick}>Edit Profile</Button>
         {this.state.editProfile ? (
           <EditProfileForm handleForm={this.handleClick} />
-        ) : null}
-      </React.Fragment>
+        ) : (
+          <div>
+            <h3>Username: {this.props.user.username}</h3>
+            <h3>Email: {this.props.user.email}</h3>
+            {localStorage.getItem("type") === "player" ? (
+              <React.Fragment>
+                <h3>Age: {this.props.user.age}</h3>
+                <h3>Level: {this.props.user.level}</h3>
+              </React.Fragment>
+            ) : null}
+
+            <Button className="editProfileButton" onClick={this.handleClick}>
+              Edit Profile
+            </Button>
+          </div>
+        )}
+      </div>
     );
   }
 }
