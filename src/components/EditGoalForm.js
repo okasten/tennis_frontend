@@ -29,23 +29,36 @@ class EditGoalForm extends Component {
 
   render() {
     return (
-      <form>
-        <label>Objective: </label>
+      <form className="editGoalForm">
+        <h2>
+          <label>Objective: </label>
+        </h2>
         <input
+          className="inputGoal"
           name="objective"
           value={this.state.goal.objective}
           onChange={this.handleChange}
           placeholder={this.props.goal.objective}
         />
-        <label>Notes: </label>
+        <h2>
+          <label>Notes: </label>
+        </h2>
         <textarea
           name="notes"
           value={this.state.goal.notes}
           onChange={this.handleChange}
           placeholder={this.props.goal.notes}
         />
-        <Button onClick={this.handleUpdate}>Update Goal</Button>
-        <Button onClick={this.props.handleEdit}>Cancel</Button>
+        <Button className="send" onClick={this.handleUpdate}>
+          Update Goal
+        </Button>
+        <Button
+          bsStyle="danger"
+          className="send"
+          onClick={this.props.handleEdit}
+        >
+          Cancel
+        </Button>
       </form>
     );
   }

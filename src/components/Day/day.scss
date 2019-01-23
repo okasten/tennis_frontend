@@ -4,13 +4,14 @@ $day-width: 14.28%; // 100 / 7 = 14.28
   position: relative;
   flex: 1 0 $day-width;
   max-width: calc(100% / 7);
-  min-height: 130px;
+  height: 130px;
   padding: 10px;
   box-shadow: inset 0 1px 1px #000;
   border-bottom-color: white;
   border-width: 0.5px;
   border-style: solid;
   border-radius: 1px;
+  overflow: scroll;
 
   &:hover {
     .btn-new-reminder {

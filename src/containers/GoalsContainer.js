@@ -147,22 +147,43 @@ class GoalsContainer extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <h1> Short-Term #GOALS </h1>
-        {this.listShortGoals()}
-        <h1> Long-Term #GOALS</h1>
-        {this.listLongGoals()}
-        <h1>#GOALS CRUSHED</h1>
-        {this.listMetGoals()}
-        <Button onClick={this.newGoal}>Create A New Goal</Button>
-        {this.state.newGoal ? <NewGoalForm setGoal={this.setGoal} /> : null}
-        {this.state.showGoal ? (
-          <GoalInformation
-            goal={this.props.theGoal}
-            handleShow={this.deleteGoal}
-          />
+      <div>
+        <div className="goalsContainer">
+          <h1 className="goalsHeader">My #GOALS</h1>
+          <div className="goals">
+            <h1 className="goalHeader"> Short-Term #GOALS </h1>
+            <div className="indiGoals">{this.listShortGoals()}</div>
+          </div>
+          <div className="goals">
+            <h1 className="goalHeader"> Long-Term #GOALS</h1>
+            <div className="indiGoals">{this.listLongGoals()}</div>
+          </div>
+          <div className="goals">
+            <h1 className="goalHeader">Crushed #GOALS</h1>
+            <div className="indiGoals">{this.listMetGoals()}</div>
+          </div>
+          <Button className="goalsButton" onClick={this.newGoal}>
+            Create A New Goal
+          </Button>
+        </div>
+        {this.state.newGoal ? (
+          <div className="newGoalForm">
+            {" "}
+            <NewGoalForm
+              setGoal={this.setGoal}
+              closeForm={this.deleteGoal}
+            />{" "}
+          </div>
         ) : null}
-      </React.Fragment>
+        {this.state.showGoal ? (
+          <div className="goalInfo">
+            <GoalInformation
+              goal={this.props.theGoal}
+              handleShow={this.deleteGoal}
+            />
+          </div>
+        ) : null}
+      </div>
     );
   }
 }

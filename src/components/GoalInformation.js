@@ -65,26 +65,45 @@ class GoalInformation extends Component {
       <React.Fragment>
         {!this.state.editGoal ? (
           <React.Fragment>
-            <h3>Goal: </h3>
-            <h4>{this.props.goal.objective}</h4>
-            <h4>Date Set: </h4>
-            <h5>{this.goalCreatedAt()}</h5>
+            <h1 className="goalFormHeader">{this.props.goal.objective}</h1>
+            <span>
+              <h2>Date Set: {this.goalCreatedAt()}</h2>
+            </span>
             {this.props.goal.met ? (
               <React.Fragment>
-                <h4>Date Met: </h4>
-                <h5>{this.goalMetAt()}</h5>
+                <span>
+                  <h2>Date Met: {this.goalMetAt()}</h2>
+                </span>
               </React.Fragment>
             ) : null}
-            <h4>Notes: </h4>
-            <h5>{this.props.goal.notes}</h5>
+            <h2>Notes: </h2>
+            <h3>{this.props.goal.notes}</h3>
 
             {!this.props.goal.met ? (
               <React.Fragment>
-                <Button onClick={this.handleClick}>Edit Goal</Button>
-                <Button onClick={this.meetGoal}>Meet Goal</Button>{" "}
+                <Button className="goalInfoButton" onClick={this.handleClick}>
+                  Edit Goal
+                </Button>
+                <Button className="goalInfoButton" onClick={this.meetGoal}>
+                  Meet Goal
+                </Button>
+                <Button
+                  className="goalInfoButton"
+                  bsStyle="danger"
+                  onClick={this.deleteGoal}
+                >
+                  Delete Goal
+                </Button>{" "}
               </React.Fragment>
-            ) : null}
-            <Button onClick={this.deleteGoal}>Delete Goal</Button>
+            ) : (
+              <Button
+                className="goalInfoDeleteButton"
+                bsStyle="danger"
+                onClick={this.deleteGoal}
+              >
+                Delete Goal
+              </Button>
+            )}
           </React.Fragment>
         ) : (
           <EditGoalForm
