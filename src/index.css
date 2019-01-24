@@ -580,3 +580,7 @@ h3.strongUnread {
 .studentGoalNotes {
   padding-left: 20px;
 }
+
+form input {
+  color: rgba(0, 0, 77, 1);
+}

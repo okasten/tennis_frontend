@@ -22,7 +22,6 @@ class TodayIndividualLesson extends Component {
   };
 
   render() {
-    console.log(this.props.coach);
     return (
       <React.Fragment>
         <h4 className="todayIndividualLesson" onClick={this.showNotes}>

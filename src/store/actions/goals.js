@@ -70,6 +70,7 @@ export const deleteGoal = goal => {
 };
 
 export const meetGoal = goal => {
+  console.log(goal);
   return function thunk(dispatch) {
     return fetch(`http://localhost:3000/api/v1/goals/${goal.id}/meet`, {
       method: "PATCH",

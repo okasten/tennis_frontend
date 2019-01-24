@@ -35,7 +35,8 @@ class GoalsContainer extends Component {
 
   newGoal = () => {
     this.setState({
-      newGoal: !this.state.newGoal
+      newGoal: !this.state.newGoal,
+      showGoal: false
     });
   };
 

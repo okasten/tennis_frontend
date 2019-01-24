@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
 import EditGoalForm from "./EditGoalForm";
+import moment from "moment";
 
 class GoalInformation extends Component {
   state = {
@@ -22,9 +23,15 @@ class GoalInformation extends Component {
     }
   }
   goalCreatedAt = () => {
-    let date = this.props.goal.created_at;
-    date = date.slice(0, 10);
-    return date;
+    if (this.props.goal.created_at) {
+      let date = this.props.goal.created_at;
+      date = date.slice(0, 10);
+      return date;
+    } else {
+      let today = moment().format();
+      let date = today.slice(0, 10);
+      return date;
+    }
   };
 
   goalMetAt = () => {

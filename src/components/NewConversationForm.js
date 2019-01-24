@@ -38,7 +38,7 @@ class NewConversationForm extends Component {
       type = "players";
     }
     this.props.sendMessage(type, this.state, this.props.user);
-    this.props.sent();
+    this.props.handleCancel();
   };
 
   createOptionsForReceivers = () => {
