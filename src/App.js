@@ -59,7 +59,7 @@ class App extends Component {
     localStorage.removeItem("type");
 
     this.setState({
-      logIn: true
+      logIn: false
     });
 
     this.props.handleLogOut();
