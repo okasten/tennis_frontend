@@ -438,6 +438,13 @@ h3.strongUnread {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.todayIndividualLesson {
+  display: block;
+  margin-bottom: 20px;
+  text-align: left;
+  border-top: 1px solid white;
+  padding-top: 5px;
+}
 
 .individualLessons {
   text-align: center;
