@@ -24,10 +24,12 @@ class LessonsContainer extends Component {
         return lesson.date;
       }
     });
+    dates = dates.map(lesson => lesson.date);
+    let uniqueDates = [...new Set(dates)];
 
-    dates = dates.map(lesson => <option>{lesson.date}</option>);
+    uniqueDates = uniqueDates.map(lesson => <option>{lesson}</option>);
 
-    return dates;
+    return uniqueDates;
   };
 
   showLessons = () => {
