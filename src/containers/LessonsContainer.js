@@ -34,11 +34,13 @@ class LessonsContainer extends Component {
   };
 
   showStudents = () => {
-    let students = this.props.user.players.map(player => player.name);
-    let uniqueStudents = [...new Set(students)];
+    if (this.props.user.players) {
+      let students = this.props.user.players.map(player => player.name);
+      let uniqueStudents = [...new Set(students)];
 
-    uniqueStudents = uniqueStudents.map(player => <option>{player}</option>);
-    return uniqueStudents;
+      uniqueStudents = uniqueStudents.map(player => <option>{player}</option>);
+      return uniqueStudents;
+    }
   };
 
   showLessons = () => {
@@ -99,16 +101,22 @@ class LessonsContainer extends Component {
               ? this.showDates()
               : "Loading previous dates..."}
           </select>
-          {"     "} Search by Student:{" "}
-          <select
-            className="select"
-            value={this.state.searchStudent}
-            onChange={this.handleChange}
-            name="searchStudent"
-          >
-            <option>Select</option>
-            {this.props.lessons ? this.showStudents() : "Loading students..."}
-          </select>
+          {localStorage.getItem("type") === "coach" ? (
+            <React.Fragment>
+              {"     "} Search by Student:{" "}
+              <select
+                className="select"
+                value={this.state.searchStudent}
+                onChange={this.handleChange}
+                name="searchStudent"
+              >
+                <option>Select</option>
+                {this.props.lessons
+                  ? this.showStudents()
+                  : "Loading students..."}
+              </select>{" "}
+            </React.Fragment>
+          ) : null}
         </div>
         {this.props.lessons ? this.showLessons() : "Loading lessons..."}
       </div>
