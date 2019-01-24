@@ -69,6 +69,14 @@ class ConversationContainer extends Component {
       newConversation: !this.state.newConversation,
       showMessages: false
     });
+    let userType = localStorage.getItem("type");
+    let type;
+    if (userType === "coach") {
+      type = "coaches";
+    } else {
+      type = "players";
+    }
+    this.props.loadConversations(type, this.props.user);
   };
 
   unreadMessages = () => {

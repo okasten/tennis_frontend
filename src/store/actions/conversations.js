@@ -5,6 +5,13 @@ const getConversations = conversations => {
   };
 };
 
+const updateConversations = conversation => {
+  return {
+    type: "UPDATE_CONVERSATIONS",
+    payload: conversation
+  };
+};
+
 const allMessages = messages => {
   return {
     type: "ALL_MESSAGES",
@@ -51,7 +58,7 @@ export const sendMessage = (type, messageData, user) => {
       }
     )
       .then(r => r.json())
-      .then(console.log);
+      .then(conversation => dispatch(updateConversations(conversation)));
   };
 };
 

@@ -100,6 +100,11 @@ const getConversations = (prevState, action) => {
   };
 };
 
+const updateConversations = (prevState, action) => {
+  let newArray = [...prevState.conversations, action.payload];
+  return { ...prevState, conversations: newArray };
+};
+
 const allMessages = (prevState, action) => {
   return {
     ...prevState,
@@ -196,6 +201,8 @@ const reducer = (prevState = initialState, action) => {
       return loadStudents(prevState, action);
     case "GET_CONVERSATIONS":
       return getConversations(prevState, action);
+    case "UPDATE_CONVERSATIONS":
+      return updateConversations(prevState, action);
     case "ALL_MESSAGES":
       return allMessages(prevState, action);
     case "ADD_MESSAGE":
