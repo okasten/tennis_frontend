@@ -6,7 +6,8 @@ import _sortBy from "lodash/sortBy";
 
 class LessonsContainer extends Component {
   state = {
-    search: ""
+    search: "",
+    searchStudent: ""
   };
   componentDidMount() {
     let type = localStorage.getItem("type");
@@ -32,13 +33,40 @@ class LessonsContainer extends Component {
     return uniqueDates;
   };
 
+  showStudents = () => {
+    let students = this.props.user.players.map(player => player.name);
+    let uniqueStudents = [...new Set(students)];
+
+    uniqueStudents = uniqueStudents.map(player => <option>{player}</option>);
+    return uniqueStudents;
+  };
+
   showLessons = () => {
     let lessons = this.props.lessons.filter(lesson => {
-      if (lesson.player !== null && lesson.date === this.state.search) {
+      if (
+        lesson.player !== null &&
+        lesson.date === this.state.search &&
+        (this.state.searchStudent === "" ||
+          this.state.searchStudent === "Select")
+      ) {
         return lesson;
       } else if (
         lesson.player !== null &&
+        lesson.player.name == this.state.searchStudent &&
         (this.state.search === "" || this.state.search === "Select")
+      ) {
+        return lesson;
+      } else if (
+        lesson.player !== null &&
+        lesson.player.name == this.state.searchStudent &&
+        lesson.date === this.state.search
+      ) {
+        return lesson;
+      } else if (
+        lesson.player !== null &&
+        (this.state.search === "" || this.state.search === "Select") &&
+        (this.state.searchStudent === "" ||
+          this.state.searchStudent === "Select")
       ) {
         return lesson;
       }
@@ -51,7 +79,7 @@ class LessonsContainer extends Component {
 
   handleChange = e => {
     this.setState({
-      search: e.target.value
+      [e.target.name]: e.target.value
     });
   };
   render() {
@@ -64,11 +92,22 @@ class LessonsContainer extends Component {
             className="select"
             value={this.state.search}
             onChange={this.handleChange}
+            name="search"
           >
             <option>Select</option>
             {this.props.lessons
               ? this.showDates()
               : "Loading previous dates..."}
+          </select>
+          {"     "} Search by Student:{" "}
+          <select
+            className="select"
+            value={this.state.searchStudent}
+            onChange={this.handleChange}
+            name="searchStudent"
+          >
+            <option>Select</option>
+            {this.props.lessons ? this.showStudents() : "Loading students..."}
           </select>
         </div>
         {this.props.lessons ? this.showLessons() : "Loading lessons..."}
