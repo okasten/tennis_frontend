@@ -10,7 +10,8 @@ import TodayLessonsContainer from "./TodayLessonsContainer";
 class CoachCalendars extends Component {
   state = {
     search: "",
-    filteredSearch: []
+    filteredSearch: [],
+    currentCoach: ""
   };
 
   componentDidMount() {
@@ -19,6 +20,8 @@ class CoachCalendars extends Component {
 
   chooseCoach = e => {
     this.props.loadLessons(e.target.value);
+
+    this.setState({ currentCoach: e.target.options[e.target.value].innerText });
   };
 
   render() {
@@ -28,7 +31,7 @@ class CoachCalendars extends Component {
     if (this.props.coaches) {
       coaches = this.props.coaches.map(coach => {
         return (
-          <option key={coach.id} value={coach.id}>
+          <option key={coach.id} value={coach.id} name={coach.name}>
             {coach.name}
           </option>
         );
@@ -61,7 +64,8 @@ class CoachCalendars extends Component {
           </Calendar>
         </div>
         <div className="todaysLessons">
-          <TodayLessonsContainer />
+          {console.log(this.state.currentCoach)}
+          <TodayLessonsContainer coach={this.state.currentCoach} />
         </div>
       </div>
     );

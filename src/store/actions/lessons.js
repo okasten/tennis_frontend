@@ -91,18 +91,15 @@ export const loadLessons = coach_id => {
 
 export const updateLesson = (user, userType, lesson) => {
   return dispatch => {
-    return fetch(
-      `http://localhost:3000/api/v1/coaches/${user.id}/lessons/${lesson.id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          lesson: lesson
-        })
-      }
-    )
+    return fetch(`http://localhost:3000/api/v1/lessons/${lesson.id}/book`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        lesson: lesson
+      })
+    })
       .then(r => r.json())
       .then(res => {
         dispatch(updateLessonAction(lesson));

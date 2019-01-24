@@ -28,7 +28,9 @@ class TodayLessonsContainer extends Component {
         });
       }
       showTodaysLessons = filteredLessons.map(lesson => {
-        return <TodayIndividualLesson lesson={lesson} />;
+        return (
+          <TodayIndividualLesson coach={this.props.coach} lesson={lesson} />
+        );
       });
     }
     return (

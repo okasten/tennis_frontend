@@ -22,6 +22,7 @@ class TodayIndividualLesson extends Component {
   };
 
   render() {
+    console.log(this.props.coach);
     return (
       <React.Fragment>
         <h4 className="todayIndividualLesson" onClick={this.showNotes}>
@@ -29,7 +30,7 @@ class TodayIndividualLesson extends Component {
             {this.props.lesson.time} <h5>with</h5>{" "}
             {localStorage.getItem("type") === "coach"
               ? this.props.lesson.player.name
-              : this.props.lesson.coach.name}
+              : this.props.coach}
           </span>
         </h4>
         {this.state.showNotes ? <h5>{this.lessonNotes()}</h5> : null}
