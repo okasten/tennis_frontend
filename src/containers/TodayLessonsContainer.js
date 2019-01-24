@@ -19,7 +19,13 @@ class TodayLessonsContainer extends Component {
       if (localStorage.getItem("type") === "coach") {
         filteredLessons = todaysLessons.filter(lesson => lesson.player);
       } else {
-        filteredLessons = todaysLessons.filter(lesson => lesson.coach);
+        filteredLessons = todaysLessons.filter(lesson => {
+          if (lesson.player) {
+            if (lesson.player.name === this.props.user.name) {
+              return lesson;
+            }
+          }
+        });
       }
       showTodaysLessons = filteredLessons.map(lesson => {
         return <TodayIndividualLesson lesson={lesson} />;
