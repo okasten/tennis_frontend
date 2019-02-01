@@ -145,7 +145,8 @@ const loadStudents = (prevState, action) => {
 const newGoal = (prevState, action) => {
   return {
     ...prevState,
-    goals: [...prevState.currentUser.goals, action.payload]
+    goals: [...prevState.currentUser.goals, action.payload],
+    goal: action.payload
   };
 };
 
