@@ -2,6 +2,8 @@
 
 ## Quick Description
 
+Demo: https://www.youtube.com/watch?v=xJz3zO7uA54
+
 The Adv.Scheduler is an app for tennis coaches and players to quickly schedule their lessons online, and keep track of those lessons.
 
 Coaches can:
@@ -24,7 +26,7 @@ Students can:
 ###Preparing the App
 Execute the following commands to clone this repo:
 
-$ git clone git@github.com:okasten/tennis_frontend.git 
+$ git clone git@github.com:okasten/tennis_frontend.git
   $ git clone git@github.com:okasten/tennis_backend.git
 
 Backend repo can be found at: https://github.com/okasten/tennis_backend
