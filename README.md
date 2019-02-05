@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Adv.Scheduler
 
-## Available Scripts
+## Quick Description
 
-In the project directory, you can run:
+The Adv.Scheduler is an app for tennis coaches and players to quickly schedule their lessons online, and keep track of those lessons.
 
-### `npm start`
+Coaches can:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Add time slots to their calendar when they are available for lessons
+- Add/Edit notes to individual lessons
+- View their students' profiles, as well as their long-term/short-term goals
+- Send direct messages to students
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Students can:
 
-### `npm test`
+- Quickly book a lesson with a specific coach
+- Add/Edit notes to their own lessons, upcoming or past
+- Keep track of their long-term and short-term goals
+- View goals that they've met, and when they met them
+- Send direct messages to coaches
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run the App Yourself
 
-### `npm run build`
+###Preparing the App
+Execute the following commands to clone this repo:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+$ git clone git@github.com:okasten/tennis_frontend.git 
+  $ git clone git@github.com:okasten/tennis_backend.git
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Backend repo can be found at: https://github.com/okasten/tennis_backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You now have both the frontend and backend repositories that contain the app, as well as all the files required to save data and run the app.
 
-### `npm run eject`
+### Running the App Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You can run the app locally with the following commands:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+$ cd tennis_backend
+  $ rails s
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Open a new terminal**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+$ cd tennis_frontend
+  $ npm start
 
-## Learn More
+_When prompted, enter 'y' to run the frontend on localhost:3001_
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+A new window should open in your web browser, and the app should be running
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributors
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Concept, design, and code by Olivia Kasten as a final project for Flatiron School Access Labs, January 2019
