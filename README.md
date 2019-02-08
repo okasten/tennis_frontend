@@ -27,7 +27,7 @@ Students can:
 Execute the following commands to clone this repo:
 
 $ git clone git@github.com:okasten/tennis_frontend.git
-  $ git clone git@github.com:okasten/tennis_backend.git
+$ git clone git@github.com:okasten/tennis_backend.git
 
 Backend repo can be found at: https://github.com/okasten/tennis_backend
 
@@ -38,12 +38,12 @@ You now have both the frontend and backend repositories that contain the app, as
 You can run the app locally with the following commands:
 
 $ cd tennis_backend
-  $ rails s
+$ rails s
 
 **Open a new terminal**
 
 $ cd tennis_frontend
-  $ npm start
+$ npm start
 
 _When prompted, enter 'y' to run the frontend on localhost:3001_
 
